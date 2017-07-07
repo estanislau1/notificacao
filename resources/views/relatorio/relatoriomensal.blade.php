@@ -26,7 +26,7 @@
                                           aria-expanded="false">Relatório mensal de Notificações</a></li>
                 </ul>
                 <!--Final da ABAS DA TAB -->
-               
+
 
                 <div class="tab-content mb20">
 
@@ -94,407 +94,397 @@
 
                                     <?php
                                     if (isset($_POST['mes'])) {
-                                    switch ($_POST['mes']):
-                                        case $mes = 1:
-                                            $titulo_mes = 'Janeiro';
-                                            break;
-                                        case $mes = 2:
-                                            $titulo_mes = 'Fevereiro';
-                                            break;
-                                        case $mes = 3:
-                                            $titulo_mes = 'Março';
-                                            break;
-                                        case $mes = 4:
-                                            $titulo_mes = 'Abril';
-                                            break;
-                                        case $mes = 5:
-                                            $titulo_mes = 'Maio';
-                                            break;
-                                        case $mes = 6:
-                                            $titulo_mes = 'Junho';
-                                            break;
-                                        case $mes = 7:
-                                            $titulo_mes = 'Julho';
-                                            break;
-                                        case $mes = 8:
-                                            $titulo_mes = 'Agosto';
-                                            break;
-                                        case $mes = 9:
-                                            $titulo_mes = 'Setembro';
-                                            break;
-                                        case $mes = 10:
-                                            $titulo_mes = 'Outubro';
-                                            break;
-                                        case $mes = 11:
-                                            $titulo_mes = 'Novembro';
-                                            break;
-                                        case $mes = 12:
-                                            $titulo_mes = 'Dezembro';
-                                            break;
-                                    endswitch;
-                                    }
-
-                                    if (isset($_POST['id_coordenacao'])) {
-                                        $titulo_coordenacao = \App\Models\Coordenacao::find($_POST['id_coordenacao']);
-                                        $titulo_contrato = \App\Models\Contrato::find($_POST['id_contrato']);
+                                        switch ($_POST['mes']):
+                                            case $mes = 1:
+                                                $titulo_mes = 'Janeiro';
+                                                break;
+                                            case $mes = 2:
+                                                $titulo_mes = 'Fevereiro';
+                                                break;
+                                            case $mes = 3:
+                                                $titulo_mes = 'Março';
+                                                break;
+                                            case $mes = 4:
+                                                $titulo_mes = 'Abril';
+                                                break;
+                                            case $mes = 5:
+                                                $titulo_mes = 'Maio';
+                                                break;
+                                            case $mes = 6:
+                                                $titulo_mes = 'Junho';
+                                                break;
+                                            case $mes = 7:
+                                                $titulo_mes = 'Julho';
+                                                break;
+                                            case $mes = 8:
+                                                $titulo_mes = 'Agosto';
+                                                break;
+                                            case $mes = 9:
+                                                $titulo_mes = 'Setembro';
+                                                break;
+                                            case $mes = 10:
+                                                $titulo_mes = 'Outubro';
+                                                break;
+                                            case $mes = 11:
+                                                $titulo_mes = 'Novembro';
+                                                break;
+                                            case $mes = 12:
+                                                $titulo_mes = 'Dezembro';
+                                                break;
+                                        endswitch;
                                     }
                                     ?>
-                                    <?php if (isset($_POST['id_coordenacao'])) { ?>
-                                        <center><h1>Relatorio mês de <?= $titulo_mes; ?>: <?= $titulo_contrato['nu_contrato'] ?> - <?= $titulo_coordenacao['no_coordenacao'] ?> </h1></center>
-                                    <?php } ?>
 
-
-                                    <?php for ($i=1; $i<=17; $i++){ ?>
+                                    <?php
+                                    if ($All != 'vazio') {
+                                        $titulo_contrato = \App\Models\Contrato::find($_POST['id_contrato']);
+                                        if($_POST['id_coordenacao'] != 999){
+                                            $i = $_POST['id_coordenacao'];
+                                            $tam = $_POST['id_coordenacao'];
+                                    }else{
+                                        $i = 1;
+                                        $tam = 17;
+                                    }
                                         
-                                        <div class="table-responsive">
-
-                                        <table  class="table table-bordered table-striped-col dataTable1">
-                                            <thead>
-                                                <tr>
-                                                    <th>Nº</th>
-                                                    <th>DATA</th>
-                                                    <th>CONTRATO</th>
-                                                    <th>EQUIPE NOTIFICADORA</th>
-                                                    <th>Indicador</th>
-                                                    <th>Descrição</th>
-                                                    <th>STATUS</th>
-                                                    <th>AÇÕES</th>
-                                                </tr>
-                                            </thead>
-
-                                            <tbody>
-
-                                                @foreach ($Notificacoes as $n)
-                                                <?php if($n->id_notificadora == $i) {?>
-                                                <tr>
-                                                    <td>
-                                                        <a href="../notificacao/ver/{{ Crypt::encrypt($n->id_notificacao) }}">{{ $n->nu_notificacao }}</a>
-                                                    </td>
-                                                    <td>{{ Carbon\Carbon::parse($n->created_at)->format('d/m/Y') }}</td>
-                                                    <td>{{ $n->nu_contrato }}</td>
-
-
-                                                    @foreach ($Coordenacoes as $Coordenacao)
-                                                    @if ($n->id_notificadora === $Coordenacao->id_coordenacao)
-                                                    <td>{{ $Coordenacao->no_coordenacao }}</td>
-                                                    @endif
-                                                    @endforeach
-
-                                                    <td>{{$n->sg_indicador}}</td>
-                                                    <td>{{strip_tags($n->ds_notificacao)}}</td>
-                                                    <td>
-                                                        @if($n->bit_aceito == 9)
-                                                        Não autorizado
-                                                        @endif
-
-                                                        @if($n->bit_aceito == 99)
-                                                        Não autorizado - Tempo de resposta esgotado!
-                                                        @endif
-
-                                                        @if($n->bit_aceito == 55)
-                                                        Justificativa Não acatada - Tempo de resposta esgotado!
-                                                        @endif
-
-                                                        @if($n->bit_aceito == 44)
-                                                        Justificativa Acatada - Tempo de resposta esgotado!
-                                                        @endif
-
-                                                        @if($n->bit_aceito == 5)
-                                                        Justificativa não acatada
-                                                        @endif
-
-                                                        @if($n->bit_aceito == 4)
-                                                        Justificativa acatada
-                                                        @endif
-
-
-                                                        @if($n->bit_aceito == 3)
-                                                        Aguardando avaliação
-                                                        @endif
-
-
-                                                        @if($n->bit_aceito == 2)
-                                                        Aguardando justificativa
-                                                        @endif
-
-
-
-                                                        @if($n->bit_aceito == 1)
-                                                        Aguardando autorização
-                                                        @endif
-
-                                                    </td>
-
-
-                                                    <td>
-                                                        <!--  Verifica se a pessoa é gestor-->
-                                                        <!--  Verifica se a pessoa é gestor-->
-                                                        @if(Session::get('isgestor') == 1)
-                                                        @if($n->dt_naoacatado == NULL && $n->bit_aceito == 1)
-                                                        <a href="../notificacao/autorizar/{{ Crypt::encrypt($n->id_notificacao) }}">Autorizar</a>
-                                                        |
-                                                        @endif
-                                                        @endif
-
-
-                                                        <!--  Verifica se a pessoa é preposto -->
-                                                        @if(Session::get('ispreposto') == 1)
-                                                        @if($n->bit_aceito == 2)
-                                                        <a href="../notificacao/justificar/{{ Crypt::encrypt($n->id_notificacao) }}">Justificar</a>
-                                                        |
-                                                        @endif
-                                                        @endif
-
-                                                        @if(Session::get('isgestor') == 1)
-                                                        @if($n->bit_aceito == 3)
-                                                        <a href="../notificacao/avaliar/{{ Crypt::encrypt($n->id_notificacao) }}">Avaliar</a>
-                                                        |
-                                                        @endif
-                                                        @endif
-
-                                                        <!--  Verifica se a pessoa é agente de RH e Contratos-->
-                                                        @if(Session::get('isrh') == 1)
-                                                        @if($n->bit_aceito == 5)
-                                                        <a href="../notificacao/corrigir/{{ Crypt::encrypt($n->id_notificacao) }}">Corrigir</a>
-                                                        |
-                                                        <a href="../notificacao/devolverpreposto/{{ Crypt::encrypt($n->id_notificacao) }}">Devolver preposto</a>
-                                                        |
-                                                        @endif
-                                                        @endif
-
-
-                                                        <a href="../notificacao/ver/{{ Crypt::encrypt($n->id_notificacao) }}">Informações</a>
-
-                                                        <!--
-                                    # COLOCAR ESSAS FUNCIONALIDADES NA PROXIMA VERSÃO
-        
-                                    | <a href="notificacao/acatamentoespecial/{{ $n->id_notificacao }}">Acatamento especial</a>
-                                    | <a href="notificacao/historico/{{ $n->id_notificacao }}">Histórico</a>
-                                                        -->
-
-
-                                                    </td>
-                                                </tr>
-                                                <?php }?><!-- fechamento if do for notificadora-->
-                                                @endforeach
-
-                                            </tbody>
-                                        </table>
-                                        <?php 
-                                        if($TotalAcat != 'vazio'){
-                                            var_dump($TotalAcat);                                    
                                         ?>
+                                        <?php
+                                        for ($i; $i <= $tam; $i++) {
+
+                                            foreach ($Coordenacoes as $cord){
+                                                if($cord->id_coordenacao == $i){
+                                                    $titulo_coordenacao = $cord->ds_coordenacao;
+                                                }
+                                            }
+                                            ?>
+
+                                    <center><h1 style="font-size: 2em; margin-top:40px; margin-bottom: 40px; color: #1c60ab;">Relatorio mês de <?= $titulo_mes; ?>: <?= $titulo_contrato['nu_contrato'] ?> - <?= $titulo_coordenacao; ?> </h1></center>
+
+                                            <div class="table-responsive">
+
+                                                <table  class="table table-bordered table-striped-col dataTable1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Nº</th>
+                                                            <th>DATA</th>
+                                                            <th>CONTRATO</th>
+                                                            <th>EQUIPE NOTIFICADORA</th>
+                                                            <th>Indicador</th>
+                                                            <th>Descrição</th>
+                                                            <th>STATUS</th>
+                                                            <th>AÇÕES</th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody>
+
+                                                        @foreach ($Notificacoes as $n)
+                                                        <?php if ($n->id_notificadora == $i) { ?>
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="../notificacao/ver/{{ Crypt::encrypt($n->id_notificacao) }}">{{ $n->nu_notificacao }}</a>
+                                                                </td>
+                                                                <td>{{ Carbon\Carbon::parse($n->created_at)->format('d/m/Y') }}</td>
+                                                                <td>{{ $n->nu_contrato }}</td>
+
+
+                                                                @foreach ($Coordenacoes as $Coordenacao)
+                                                                @if ($n->id_notificadora === $Coordenacao->id_coordenacao)
+                                                                <td>{{ $Coordenacao->no_coordenacao }}</td>
+                                                                @endif
+                                                                @endforeach
+
+                                                                <td>{{$n->sg_indicador}}</td>
+                                                                <td>{{strip_tags($n->ds_notificacao)}}</td>
+                                                                <td>
+                                                                    @if($n->bit_aceito == 9)
+                                                                    Não autorizado
+                                                                    @endif
+
+                                                                    @if($n->bit_aceito == 99)
+                                                                    Não autorizado - Tempo de resposta esgotado!
+                                                                    @endif
+
+                                                                    @if($n->bit_aceito == 55)
+                                                                    Justificativa Não acatada - Tempo de resposta esgotado!
+                                                                    @endif
+
+                                                                    @if($n->bit_aceito == 44)
+                                                                    Justificativa Acatada - Tempo de resposta esgotado!
+                                                                    @endif
+
+                                                                    @if($n->bit_aceito == 5)
+                                                                    Justificativa não acatada
+                                                                    @endif
+
+                                                                    @if($n->bit_aceito == 4)
+                                                                    Justificativa acatada
+                                                                    @endif
+
+
+                                                                    @if($n->bit_aceito == 3)
+                                                                    Aguardando avaliação
+                                                                    @endif
+
+
+                                                                    @if($n->bit_aceito == 2)
+                                                                    Aguardando justificativa
+                                                                    @endif
+
+
+
+                                                                    @if($n->bit_aceito == 1)
+                                                                    Aguardando autorização
+                                                                    @endif
+
+                                                                </td>
+
+
+                                                                <td>
+                                                                    <!--  Verifica se a pessoa é gestor-->
+                                                                    <!--  Verifica se a pessoa é gestor-->
+                                                                    @if(Session::get('isgestor') == 1)
+                                                                    @if($n->dt_naoacatado == NULL && $n->bit_aceito == 1)
+                                                                    <a href="../notificacao/autorizar/{{ Crypt::encrypt($n->id_notificacao) }}">Autorizar</a>
+                                                                    |
+                                                                    @endif
+                                                                    @endif
+
+
+                                                                    <!--  Verifica se a pessoa é preposto -->
+                                                                    @if(Session::get('ispreposto') == 1)
+                                                                    @if($n->bit_aceito == 2)
+                                                                    <a href="../notificacao/justificar/{{ Crypt::encrypt($n->id_notificacao) }}">Justificar</a>
+                                                                    |
+                                                                    @endif
+                                                                    @endif
+
+                                                                    @if(Session::get('isgestor') == 1)
+                                                                    @if($n->bit_aceito == 3)
+                                                                    <a href="../notificacao/avaliar/{{ Crypt::encrypt($n->id_notificacao) }}">Avaliar</a>
+                                                                    |
+                                                                    @endif
+                                                                    @endif
+
+                                                                    <!--  Verifica se a pessoa é agente de RH e Contratos-->
+                                                                    @if(Session::get('isrh') == 1)
+                                                                    @if($n->bit_aceito == 5)
+                                                                    <a href="../notificacao/corrigir/{{ Crypt::encrypt($n->id_notificacao) }}">Corrigir</a>
+                                                                    |
+                                                                    <a href="../notificacao/devolverpreposto/{{ Crypt::encrypt($n->id_notificacao) }}">Devolver preposto</a>
+                                                                    |
+                                                                    @endif
+                                                                    @endif
+
+
+                                                                    <a href="../notificacao/ver/{{ Crypt::encrypt($n->id_notificacao) }}">Informações</a>
+
+                                                                    <!--
+                                                # COLOCAR ESSAS FUNCIONALIDADES NA PROXIMA VERSÃO
+                    
+                                                | <a href="notificacao/acatamentoespecial/{{ $n->id_notificacao }}">Acatamento especial</a>
+                                                | <a href="notificacao/historico/{{ $n->id_notificacao }}">Histórico</a>
+                                                                    -->
+
+
+                                                                </td>
+                                                            </tr>
+                                                        <?php } ?><!-- fechamento if do for notificadora-->
+                                                        @endforeach
+
+                                                    </tbody>
+                                                </table>
+
+
+                                                <table class="table table-striped  table-total" style="margin-top: 30px !important;width: 50%;" align="center">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Indicador</th>
+                                                            <th>Ocorrências Notificadas</th>
+                                                            <th>Não acatadas</th>
+                                                            <th>Acatadas</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="background: #ffb3ff;">IEPC001</td>
+                                                            <!-- Total-->
+
+                                                            <?php
+                                                            $contacat = 0;
+                                                            $contnacat = 0;
+                                                            $totalacatada = 0;
+                                                            $totalnacatada = 0;
+                                                            foreach ($All as $not):
+                                                                if ($not->id_indicador == 4 && $not->id_notificadora == $i && ($not->bit_aceito == 4 || $not->bit_aceito == 44)) {
+                                                                    $contacat = $not->total;
+                                                                    $totalacatada = $totalacatada + $contacat;
+                                                                } elseif ($not->id_indicador == 4 && $not->id_notificadora == $i && ($not->bit_aceito == 5 || $not->bit_aceito == 55)) {
+                                                                    $contnacat = $not->total;
+                                                                    $totalnacatada = $totalnacatada + $contnacat;
+                                                                }
+                                                            endforeach;
+                                                            $total01 = $contacat + $contnacat;
+                                                            ?>
+                                                            <td>{{$total01}}</td>
+                                                            <!-- Not Acat-->
+                                                            <td>{{$contnacat}}</td>                                                     
+                                                            <!-- Acat-->
+                                                            <td>{{$contacat}}</td>
+                                                        </tr>
+                                                        <tr >
+                                                            <td style="background: #ffb3b3;">IEPC002</td>
+                                                            <!-- Total-->
+                                                            <?php
+                                                            $contacat = 0;
+                                                            $contnacat = 0;
+                                                            foreach ($All as $not):
+                                                                if ($not->id_indicador == 5 && $not->id_notificadora == $i && ($not->bit_aceito == 4 || $not->bit_aceito == 44)) {
+                                                                    $contacat = $not->total;
+                                                                    $totalacatada = $totalacatada + $contacat;
+                                                                } elseif ($not->id_indicador == 5 && $not->id_notificadora == $i && ($not->bit_aceito == 5 || $not->bit_aceito == 55)) {
+                                                                    $contnacat = $not->total;
+                                                                    $totalnacatada = $totalnacatada + $contnacat;
+                                                                }
+                                                            endforeach;
+                                                            $total02 = $contacat + $contnacat;
+                                                            ?>
+                                                            <td>{{$total02}}</td>
+                                                            <!-- Not Acat-->
+                                                            <td>{{$contnacat}}</td>                                                     
+                                                            <!-- Acat-->
+                                                            <td>{{$contacat}}</td>
+                                                        </tr>
+                                                        <tr >
+                                                            <td style="background: #ffffb3;">IEPC003</td>
+                                                            <!-- Total-->
+                                                            <?php
+                                                            $contacat = 0;
+                                                            $contnacat = 0;
+                                                            foreach ($All as $not):
+                                                                if ($not->id_indicador == 6 && $not->id_notificadora == $i && ($not->bit_aceito == 4 || $not->bit_aceito == 44)) {
+                                                                    $contacat = $not->total;
+                                                                    $totalacatada = $totalacatada + $contacat;
+                                                                } elseif ($not->id_indicador == 6 && $not->id_notificadora == $i && ($not->bit_aceito == 5 || $not->bit_aceito == 55)) {
+                                                                    $contnacat = $not->total;
+                                                                    $totalnacatada = $totalnacatada + $contnacat;
+                                                                }
+                                                            endforeach;
+                                                            $total03 = $contacat + $contnacat;
+                                                            ?>
+                                                            <td>{{$total03}}</td>
+                                                            <!-- Not Acat-->
+                                                            <td>{{$contnacat}}</td>                                                     
+                                                            <!-- Acat-->
+                                                            <td>{{$contacat}}</td>
+                                                        </tr>
+                                                        <tr >
+                                                            <td style="background: #b3b3ff;">IEPC004</td>
+                                                            <!-- Total-->
+                                                            <?php
+                                                            $contacat = 0;
+                                                            $contnacat = 0;
+                                                            foreach ($All as $not):
+                                                                if ($not->id_indicador == 7 && $not->id_notificadora == $i && ($not->bit_aceito == 4 || $not->bit_aceito == 44)) {
+                                                                    $contacat = $not->total;
+                                                                    $totalacatada = $totalacatada + $contacat;
+                                                                } elseif ($not->id_indicador == 7 && $not->id_notificadora == $i && ($not->bit_aceito == 5 || $not->bit_aceito == 55)) {
+                                                                    $contnacat = $not->total;
+                                                                    $totalnacatada = $totalnacatada + $contnacat;
+                                                                }
+                                                            endforeach;
+                                                            $total04 = $contacat + $contnacat;
+                                                            ?>
+                                                            <td>{{$total04}}</td>
+                                                            <!-- Not Acat-->
+                                                            <td>{{$contnacat}}</td>                                                     
+                                                            <!-- Acat-->
+                                                            <td>{{$contacat}}</td>
+                                                        </tr>
+                                                        <tr >
+                                                            <td style="background: #ffb3d9;">IEPC005</td>
+                                                            <!-- Total-->
+                                                            <?php
+                                                            $contacat = 0;
+                                                            $contnacat = 0;
+                                                            foreach ($All as $not):
+                                                                if ($not->id_indicador == 8 && $not->id_notificadora == $i && ($not->bit_aceito == 4 || $not->bit_aceito == 44)) {
+                                                                    $contacat = $not->total;
+                                                                    $totalacatada = $totalacatada + $contacat;
+                                                                } elseif ($not->id_indicador == 8 && $not->id_notificadora == $i && ($not->bit_aceito == 5 || $not->bit_aceito == 55)) {
+                                                                    $contnacat = $not->total;
+                                                                    $totalnacatada = $totalnacatada + $contnacat;
+                                                                }
+                                                            endforeach;
+                                                            $total05 = $contacat + $contnacat;
+                                                            ?>
+                                                            <td>{{$total05}}</td>
+                                                            <!-- Not Acat-->
+                                                            <td>{{$contnacat}}</td>                                                     
+                                                            <!-- Acat-->
+                                                            <td>{{$contacat}}</td>
+                                                        </tr>
+                                                        <tr >
+                                                            <td style="background: #b3d9ff;">IEPC006</td>
+                                                            <!-- Total-->
+                                                            <?php
+                                                            $contacat = 0;
+                                                            $contnacat = 0;
+                                                            foreach ($All as $not):
+                                                                if ($not->id_indicador == 9 && $not->id_notificadora == $i && ($not->bit_aceito == 4 || $not->bit_aceito == 44)) {
+                                                                    $contacat = $not->total;
+                                                                    $totalacatada = $totalacatada + $contacat;
+                                                                } elseif ($not->id_indicador == 9 && $not->id_notificadora == $i && ($not->bit_aceito == 5 || $not->bit_aceito == 55)) {
+                                                                    $contnacat = $not->total;
+                                                                    $totalnacatada = $totalnacatada + $contnacat;
+                                                                }
+                                                            endforeach;
+                                                            $total06 = $contacat + $contnacat;
+                                                            ?>
+                                                            <td>{{$total06}}</td>
+                                                            <!-- Not Acat-->
+                                                            <td>{{$contnacat}}</td>                                                     
+                                                            <!-- Acat-->
+                                                            <td>{{$contacat}}</td>
+                                                        </tr>
+                                                        <tr >
+                                                            <td style="background: #d9d9d9;">IDSP001</td>
+                                                            <!-- Total-->
+                                                            <?php
+                                                            $contacat = 0;
+                                                            $contnacat = 0;
+                                                            foreach ($All as $not):
+                                                                if ($not->id_indicador == 10 && $not->id_notificadora == $i && ($not->bit_aceito == 4 || $not->bit_aceito == 44)) {
+                                                                    $contacat = $not->total;
+                                                                    $totalacatada = $totalacatada + $contacat;
+                                                                } elseif ($not->id_indicador == 10 && $not->id_notificadora == $i && ($not->bit_aceito == 5 || $not->bit_aceito == 55)) {
+                                                                    $contnacat = $not->total;
+                                                                    $totalnacatada = $totalnacatada + $contnacat;
+                                                                }
+                                                            endforeach;
+                                                            $total07 = $contacat + $contnacat;
+                                                            ?>
+                                                            <td>{{$total07}}</td>
+                                                            <!-- Not Acat-->
+                                                            <td>{{$contnacat}}</td>                                                     
+                                                            <!-- Acat-->
+                                                            <td>{{$contacat}}</td>
+                                                        </tr>
+                                                        <tr style="background: #b3ffb3;">
+                                                            <td>TOTAL</td>
+                                                            <td><?= $total01 + $total02 + $total03 + $total04 + $total05 + $total05 + $total06 + $total07; ?></td>
+                                                            <td><?= $totalnacatada; ?></td>
+                                                            <td><?= $totalacatada; ?></td>
+
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <hr>
                                             
-                                        <table class="table table-striped  table-total" style="margin-top: 30px !important;width: 50%;" align="center">
-                                            <thead>
-                                                <tr>
-                                                    <th>Indicador</th>
-                                                    <th>Ocorrências Notificadas</th>
-                                                    <th>Não acatadas</th>
-                                                    <th>Acatadas</th>
-
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td style="background: #ffb3ff;">IEPC001</td>
-                                                    <!-- Total-->
-                                                    <?php                                                         
-                                                    $contacat = 0;
-                                                    $contnacat = 0;
-                                                    $totalacatada = 0;
-                                                    $totalnacatada = 0;
-                                                    foreach ($TotalAcat as $acat):
-                                                        if ($acat->id_indicador == 4):
-                                                            $contacat = $acat->total;
-                                                            $totalacatada = $totalacatada + $contacat;
-                                                        endif;
-                                                    endforeach;
-                                                    foreach ($TotalNotAcat as $nacat):
-                                                        if ($nacat->id_indicador == 4):
-                                                            $contnacat = $nacat->total;
-                                                            $totalnacatada = $totalnacatada + $contnacat;
-                                                        endif;
-                                                    endforeach;
-                                                    $total01 = $contacat + $contnacat;
-                                                    ?>
-                                                    <td>{{$total01}}</td>
-                                                    <!-- Not Acat-->
-                                                    <td>{{$contnacat}}</td>                                                     
-                                                    <!-- Acat-->
-                                                    <td>{{$contacat}}</td>
-                                                </tr>
-                                                <tr >
-                                                    <td style="background: #ffb3b3;">IEPC002</td>
-                                                    <!-- Total-->
-                                                    <?php
-                                                    
-                                                    $contacat = 0;
-                                                    $contnacat = 0;
-                                                    foreach ($TotalAcat as $acat):
-                                                        if ($acat->id_indicador == 5):
-                                                            $contacat = $acat->total;                                                            
-                                                            $totalacatada = $totalacatada + $contacat;
-                                                        endif;
-                                                    endforeach;
-                                                    foreach ($TotalNotAcat as $nacat):
-                                                        if ($nacat->id_indicador == 5):
-                                                            $contnacat = $nacat->total;
-                                                            $totalnacatada = $totalnacatada + $contnacat;
-                                                        endif;
-                                                    endforeach;
-                                                    $total02 = $contacat + $contnacat;
-                                                    ?>
-                                                    <td>{{$total02}}</td>
-                                                    <!-- Not Acat-->
-                                                    <td>{{$contnacat}}</td>                                                     
-                                                    <!-- Acat-->
-                                                    <td>{{$contacat}}</td>
-                                                </tr>
-                                                <tr >
-                                                    <td style="background: #ffffb3;">IEPC003</td>
-                                                    <!-- Total-->
-                                                    <?php
-                                                    $contacat = 0;
-                                                    $contnacat = 0;
-                                                    foreach ($TotalAcat as $acat):
-                                                        if ($acat->id_indicador == 6):
-                                                            $contacat = $acat->total;
-                                                            $totalacatada = $totalacatada + $contacat;
-
-                                                        endif;
-                                                    endforeach;
-                                                    foreach ($TotalNotAcat as $nacat):
-                                                        if ($nacat->id_indicador == 6):
-                                                            $contnacat = $nacat->total;
-                                                            $totalnacatada = $totalnacatada + $contnacat;
-                                                        endif;
-                                                    endforeach;
-                                                    $total03 = $contacat + $contnacat;
-                                                    ?>
-                                                    <td>{{$total03}}</td>
-                                                    <!-- Not Acat-->
-                                                    <td>{{$contnacat}}</td>                                                     
-                                                    <!-- Acat-->
-                                                    <td>{{$contacat}}</td>
-                                                </tr>
-                                                <tr >
-                                                    <td style="background: #b3b3ff;">IEPC004</td>
-                                                    <!-- Total-->
-                                                    <?php
-                                                    $contacat = 0;
-                                                    $contnacat = 0;
-                                                    foreach ($TotalAcat as $acat):
-                                                        if ($acat->id_indicador == 7):
-                                                            $contacat = $acat->total;
-                                                            $totalacatada = $totalacatada + $contacat;
-                                                        endif;
-                                                    endforeach;
-                                                    foreach ($TotalNotAcat as $nacat):
-                                                        if ($nacat->id_indicador == 7):
-                                                            $contnacat = $nacat->total;
-                                                            $totalnacatada = $totalnacatada + $contnacat;
-                                                        endif;
-                                                    endforeach;
-                                                    $total04 = $contacat + $contnacat;
-                                                    ?>
-                                                    <td>{{$total04}}</td>
-                                                    <!-- Not Acat-->
-                                                    <td>{{$contnacat}}</td>                                                     
-                                                    <!-- Acat-->
-                                                    <td>{{$contacat}}</td>
-                                                </tr>
-                                                <tr >
-                                                    <td style="background: #ffb3d9;">IEPC005</td>
-                                                    <!-- Total-->
-                                                    <?php
-                                                    $contacat = 0;
-                                                    $contnacat = 0;
-                                                    foreach ($TotalAcat as $acat):
-                                                        if ($acat->id_indicador == 8):
-                                                            $contacat = $acat->total;
-                                                            $totalacatada = $totalacatada + $contacat;
-                                                        endif;
-                                                    endforeach;
-                                                    foreach ($TotalNotAcat as $nacat):
-                                                        if ($nacat->id_indicador == 8):
-                                                            $contnacat = $nacat->total;
-                                                            $totalnacatada = $totalnacatada + $contnacat;
-                                                        endif;
-                                                    endforeach;
-                                                    $total05 = $contacat + $contnacat;
-                                                    ?>
-                                                    <td>{{$total05}}</td>
-                                                    <!-- Not Acat-->
-                                                    <td>{{$contnacat}}</td>                                                     
-                                                    <!-- Acat-->
-                                                    <td>{{$contacat}}</td>
-                                                </tr>
-                                                <tr >
-                                                    <td style="background: #b3d9ff;">IEPC006</td>
-                                                    <!-- Total-->
-                                                    <?php
-                                                    $contacat = 0;
-                                                    $contnacat = 0;
-                                                    foreach ($TotalAcat as $acat):
-                                                        if ($acat->id_indicador == 9):
-                                                            $contacat = $acat->total;
-                                                            $totalacatada = $totalacatada + $contacat;
-                                                        endif;
-                                                    endforeach;
-                                                    foreach ($TotalNotAcat as $nacat):
-                                                        if ($nacat->id_indicador == 9):
-                                                            $contnacat = $nacat->total;
-                                                            $totalnacatada = $totalnacatada + $contnacat;
-                                                        endif;
-                                                    endforeach;
-                                                    $total06 = $contacat + $contnacat;
-                                                    ?>
-                                                    <td>{{$total06}}</td>
-                                                    <!-- Not Acat-->
-                                                    <td>{{$contnacat}}</td>                                                     
-                                                    <!-- Acat-->
-                                                    <td>{{$contacat}}</td>
-                                                </tr>
-                                                <tr >
-                                                    <td style="background: #d9d9d9;">IDSP001</td>
-                                                    <!-- Total-->
-                                                    <?php
-                                                    $contacat = 0;
-                                                    $contnacat = 0;
-                                                    foreach ($TotalAcat as $acat):
-                                                        if ($acat->id_indicador == 10):
-                                                            $contacat = $acat->total;
-                                                            $totalacatada = $totalacatada + $contacat;
-                                                        endif;
-                                                    endforeach;
-                                                    foreach ($TotalNotAcat as $nacat):
-                                                        if ($nacat->id_indicador == 10):
-                                                            $contnacat = $nacat->total;
-                                                            $totalnacatada = $totalnacatada + $contnacat;
-                                                        endif;
-                                                    endforeach;
-                                                    $total07 = $contacat + $contnacat;
-                                                    ?>
-                                                    <td>{{$total07}}</td>
-                                                    <!-- Not Acat-->
-                                                    <td>{{$contnacat}}</td>                                                     
-                                                    <!-- Acat-->
-                                                    <td>{{$contacat}}</td>
-                                                </tr>
-                                                <tr style="background: #b3ffb3;">
-                                                    <td>TOTAL</td>
-                                                    <td><?= $total01 + $total02 + $total03 + $total04 + $total05 + $total05 + $total06 + $total07; ?></td>
-                                                    <td><?= $totalnacatada;?></td>
-                                                    <td><?= $totalacatada;?></td>
-                                                    
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <?php }?>
-                                    </div>
-                                        <?php }?><!-- fechamento for -->
+                                        </div>
+                                    <?php } ?><!-- fechamento for -->
                                 </div> <!-- panel-body -->
+                                <?php } ?>
                             </div>
                         </div> <!-- panel -->
                     </div> <!-- Final do Primeiro panel (TAB:popular) -->
