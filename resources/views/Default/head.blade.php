@@ -9,7 +9,6 @@
 
   <title>Sistema de Notificações</title>
 
-  
 
   <link rel="stylesheet" href="{{ asset("theme/lib/fontawesome/css/font-awesome.css") }}">
   <link rel="stylesheet" href="{{ asset("theme/lib/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css") }}">

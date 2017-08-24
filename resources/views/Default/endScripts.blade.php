@@ -12,9 +12,16 @@
 <script src="{{ asset("theme/lib/bootstrapcolorpicker/js/bootstrap-colorpicker.js") }}"></script>
 <script src="{{ asset("theme/lib/jquery-validate/jquery.validate.js") }}"></script>
 <script src="{{ asset("theme/js/quirk.js") }}"></script>
+
 <script type="text/javascript"> 
 $(document).ready(function(){
 	$("#datafinal").mask("99/99/9999");
 	$("#datainicio").mask("99/99/9999");
 });   
+</script>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
 </script>

@@ -47,11 +47,13 @@
                                 <div class="menu-mes">
                                 
                                 <?php 
+                               
                                 if(isset($_POST['mes'])){
                                     $mes = $_POST['mes'];
                                 }
                                 else {   
                                 $mes = Carbon\Carbon::now()->month;
+
                                 }
                                 
                                     
@@ -59,18 +61,18 @@
 
                                 
                                     <select name="mes" class="select2" style="width: 9% !important;" title="Selecione o mês visualizar" >
-                                        <option value="01" <?php echo ($mes == 01) ? "selected" : ""; ?>>Janeiro</option>
-                                        <option value="02" <?php echo ($mes == 02) ? "selected" : ""; ?>>Fevereiro</option>
-                                        <option value="03" <?php echo ($mes == 03) ? "selected" : ""; ?>>Março</option>
-                                        <option value="04" <?php echo ($mes == 04) ? "selected" : ""; ?>>Abril</option>
-                                        <option value="05" <?php echo ($mes == 05) ? "selected" : ""; ?>>Maio</option>
-                                        <option value="06" <?php echo ($mes == 06) ? "selected" : ""; ?>>Junho</option>
-                                        <option value="07" <?php echo ($mes == 07) ? "selected" : ""; ?>>Julho</option>
-                                        <option value="08" <?php echo ($mes == 08) ? "selected" : ""; ?>>Agosto</option>
-                                        <option value="09" <?php echo ($mes == 09) ? "selected" : ""; ?>>Setembro</option>
-                                        <option value="10" <?php echo ($mes == 10) ? "selected" : ""; ?>>Outubro</option>
-                                        <option value="11" <?php echo ($mes == 11) ? "selected" : ""; ?>>Novembro</option>
-                                        <option value="12" <?php echo ($mes == 12) ? "selected" : ""; ?>>Dezembro</option>
+                                        <option value="01" <?php echo ($mes == '01') ? "selected" : ""; ?>>Janeiro</option>
+                                        <option value="02" <?php echo ($mes == '02') ? "selected" : ""; ?>>Fevereiro</option>
+                                        <option value="03" <?php echo ($mes == '03') ? "selected" : ""; ?>>Março</option>
+                                        <option value="04" <?php echo ($mes == '04') ? "selected" : ""; ?>>Abril</option>
+                                        <option value="05" <?php echo ($mes == '05') ? "selected" : ""; ?>>Maio</option>
+                                        <option value="06" <?php echo ($mes == '06') ? "selected" : ""; ?>>Junho</option>
+                                        <option value="07" <?php echo ($mes == '07') ? "selected" : ""; ?>>Julho</option>
+                                        <option value="08" <?php echo ($mes == '08') ? "selected" : ""; ?>>Agosto</option>
+                                        <option value="09" <?php echo ($mes == '09') ? "selected" : ""; ?>>Setembro</option>
+                                        <option value="10" <?php echo ($mes == '10') ? "selected" : ""; ?>>Outubro</option>
+                                        <option value="11" <?php echo ($mes == '11') ? "selected" : ""; ?>>Novembro</option>
+                                        <option value="12" <?php echo ($mes == '12') ? "selected" : ""; ?>>Dezembro</option>
                                     </select>
 
                                     

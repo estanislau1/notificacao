@@ -108,6 +108,7 @@ class RelatorioController extends Controller {
            
             $All = DB::table('NOTIFICACAO')
                     ->join('CONTRATOS', 'CONTRATOS.id_contrato', '=', 'NOTIFICACAO.id_contrato')
+                    ->join('NOTIFICACAO_MOTIVO', 'NOTIFICACAO_MOTIVO.id_notificacao', '=', 'NOTIFICACAO.id_notificacao')
                     ->where('NOTIFICACAO.deleted_at', null)
                     ->where('CONTRATOS.deleted_at', null)
                     ->whereIn('bit_aceito', array(4,44,5, 55))
@@ -121,8 +122,8 @@ class RelatorioController extends Controller {
                     }, function ($query) {
                         //return $query->orderBy('name');
                     })
-                    ->select('NOTIFICACAO.id_notificadora', 'NOTIFICACAO.id_indicador', 'NOTIFICACAO.bit_aceito',DB::raw("count('NOTIFICACAO.id_indicador') as total"))
-                    ->groupBy('NOTIFICACAO.id_notificadora', 'NOTIFICACAO.id_indicador','NOTIFICACAO.bit_aceito')
+                    ->select('NOTIFICACAO.id_notificadora', 'NOTIFICACAO.id_indicador', 'NOTIFICACAO.bit_aceito',DB::raw("count('NOTIFICACAO.id_indicador') as total"),'NOTIFICACAO_MOTIVO.id_motivo',DB::raw("count('NOTIFICACAO_MOTIVO.id_motivo') as total_mot"))
+                    ->groupBy('NOTIFICACAO.id_notificadora', 'NOTIFICACAO.id_indicador','NOTIFICACAO.bit_aceito','NOTIFICACAO_MOTIVO.id_motivo')
                     ->get();
             
         } else {
@@ -148,6 +149,7 @@ class RelatorioController extends Controller {
            
             $All = DB::table('NOTIFICACAO')
                     ->join('CONTRATOS', 'CONTRATOS.id_contrato', '=', 'NOTIFICACAO.id_contrato')
+                    ->join('NOTIFICACAO_MOTIVO', 'NOTIFICACAO_MOTIVO.id_notificacao', '=', 'NOTIFICACAO.id_notificacao')
                     ->where('NOTIFICACAO.deleted_at', null)
                     ->where('CONTRATOS.deleted_at', null)
                     ->whereIn('bit_aceito', array(4,44,5, 55))
@@ -161,8 +163,8 @@ class RelatorioController extends Controller {
                     }, function ($query) {
                         //return $query->orderBy('name');
                     })
-                    ->select('NOTIFICACAO.id_notificadora', 'NOTIFICACAO.id_indicador', 'NOTIFICACAO.bit_aceito',DB::raw("count('NOTIFICACAO.id_indicador') as total"))
-                    ->groupBy('NOTIFICACAO.id_notificadora', 'NOTIFICACAO.id_indicador','NOTIFICACAO.bit_aceito')
+                    ->select('NOTIFICACAO.id_notificadora', 'NOTIFICACAO.id_indicador', 'NOTIFICACAO.bit_aceito',DB::raw("count('NOTIFICACAO.id_indicador') as total"),'NOTIFICACAO_MOTIVO.id_motivo',DB::raw("count('NOTIFICACAO_MOTIVO.id_motivo') as total_mot"))
+                    ->groupBy('NOTIFICACAO.id_notificadora', 'NOTIFICACAO.id_indicador','NOTIFICACAO.bit_aceito','NOTIFICACAO_MOTIVO.id_motivo')
                     ->get();
             
         }
