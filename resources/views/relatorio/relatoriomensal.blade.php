@@ -170,7 +170,7 @@
                                             $tam = $_POST['id_coordenacao'];
                                         } else {
                                             $i = 1;
-                                            $tam = 17;
+                                            $tam = 19;
                                         }
                                         ?>
                                         <?php
@@ -399,10 +399,10 @@
                                                             ?>
                                                             <td>{{$total01}}</td>
                                                             <!-- Not Acat-->
-                                                            <td><div data-toggle="tooltip" title="falha - <?= $falhanac; ?> | nao conforme prazo - <?= $naoconformeprazonac; ?> | nao conforme eficacia <?= $naoconformeeficacianac; ?> | indisponibilidade - <?= $indisponibilidadenac; ?> ">{{$contnacat}}</div></td>
+                                                            <td><div data-toggle="tooltip" title="Falha de conformidade - <?= $falhanac; ?> | Não conforme com o prazo - <?= $naoconformeprazonac; ?> | Não conforme com a  eficácia <?= $naoconformeeficacianac; ?> | Indisponibilidade de IC |  <?= $indisponibilidadenac; ?> ">{{$contnacat}}</div></td>
 
                                                             <!-- Acat-->
-                                                            <td><div data-toggle="tooltip" title="falha - <?= $falhaac; ?> | nao conforme prazo - <?= $naoconformeprazoac; ?> | nao conforme eficacia <?= $naoconformeeficaciaac; ?> | indisponibilidade - <?= $indisponibilidadeac; ?> ">{{$contacat}}</div></td>
+                                                            <td><div data-toggle="tooltip" title="Falha de conformidade - <?= $falhaac; ?> | Não conforme com o prazo - <?= $naoconformeprazoac; ?> | Não conforme com a  eficácia <?= $naoconformeeficaciaac; ?> | Indisponibilidade de IC |  <?= $indisponibilidadeac; ?> ">{{$contacat}}</div></td>
                                                         </tr>
                                                         <tr >
                                                             <td style="background: #ffb3b3;">IEPC002</td>
@@ -466,10 +466,10 @@
                                                             ?>
                                                             <td>{{$total02}}</td>
                                                             <!-- Not Acat-->
-                                                            <td><div data-toggle="tooltip" title="falha - <?= $falhanac; ?> | nao conforme prazo - <?= $naoconformeprazonac; ?> | nao conforme eficacia <?= $naoconformeeficacianac; ?> | indisponibilidade - <?= $indisponibilidadenac; ?> ">{{$contnacat}}</div></td>
+                                                            <td><div data-toggle="tooltip" title="Falha de conformidade - <?= $falhanac; ?> | Não conforme com o prazo - <?= $naoconformeprazonac; ?> | Não conforme com a  eficácia <?= $naoconformeeficacianac; ?> | Indisponibilidade de IC |  <?= $indisponibilidadenac; ?> ">{{$contnacat}}</div></td>
 
                                                             <!-- Acat-->
-                                                            <td><div data-toggle="tooltip" title="falha - <?= $falhaac; ?> | nao conforme prazo - <?= $naoconformeprazoac; ?> | nao conforme eficacia <?= $naoconformeeficaciaac; ?> | indisponibilidade - <?= $indisponibilidadeac; ?> ">{{$contacat}}</div></td>
+                                                            <td><div data-toggle="tooltip" title="Falha de conformidade - <?= $falhaac; ?> | Não conforme com o prazo - <?= $naoconformeprazoac; ?> | Não conforme com a  eficácia <?= $naoconformeeficaciaac; ?> | Indisponibilidade de IC |  <?= $indisponibilidadeac; ?> ">{{$contacat}}</div></td>
                                                         </tr>
                                                         <tr >
                                                             <td style="background: #ffffb3;">IEPC003</td>
@@ -533,10 +533,10 @@
                                                             ?>
                                                             <td>{{$total03}}</td>
                                                             <!-- Not Acat-->
-                                                            <td><div data-toggle="tooltip" title="falha - <?= $falhanac; ?> | nao conforme prazo - <?= $naoconformeprazonac; ?> | nao conforme eficacia <?= $naoconformeeficacianac; ?> | indisponibilidade - <?= $indisponibilidadenac; ?> ">{{$contnacat}}</div></td>
+                                                            <td><div data-toggle="tooltip" title="Falha de conformidade - <?= $falhanac; ?> | Não conforme com o prazo - <?= $naoconformeprazonac; ?> | Não conforme com a  eficácia <?= $naoconformeeficacianac; ?> | Indisponibilidade de IC |  <?= $indisponibilidadenac; ?> ">{{$contnacat}}</div></td>
 
                                                             <!-- Acat-->
-                                                            <td><div data-toggle="tooltip" title="falha - <?= $falhaac; ?> | nao conforme prazo - <?= $naoconformeprazoac; ?> | nao conforme eficacia <?= $naoconformeeficaciaac; ?> | indisponibilidade - <?= $indisponibilidadeac; ?> ">{{$contacat}}</div></td>
+                                                            <td><div data-toggle="tooltip" title="Falha de conformidade - <?= $falhaac; ?> | Não conforme com o prazo - <?= $naoconformeprazoac; ?> | Não conforme com a  eficácia <?= $naoconformeeficaciaac; ?> | Indisponibilidade de IC |  <?= $indisponibilidadeac; ?> ">{{$contacat}}</div></td>
                                                         </tr>
                                                         <tr >
                                                             <td style="background: #b3b3ff;">IEPC004</td>
@@ -600,9 +600,9 @@
                                                             ?>
                                                             <td>{{$total04}}</td>
                                                             <!-- Not Acat-->
-                                                            <td><div data-toggle="tooltip" title="falha - <?= $falhanac; ?> | nao conforme prazo - <?= $naoconformeprazonac; ?> | nao conforme eficacia <?= $naoconformeeficacianac; ?> | indisponibilidade - <?= $indisponibilidadenac; ?> ">{{$contnacat}}</div></td>                                                     
+                                                            <td><div data-toggle="tooltip" title="Falha de conformidade - <?= $falhanac; ?> | Não conforme com o prazo - <?= $naoconformeprazonac; ?> | Não conforme com a  eficácia <?= $naoconformeeficacianac; ?> | Indisponibilidade de IC |  <?= $indisponibilidadenac; ?> ">{{$contnacat}}</div></td>                                                     
                                                             <!-- Acat-->
-                                                            <td><div data-toggle="tooltip" title="falha - <?= $falhaac; ?> | nao conforme prazo - <?= $naoconformeprazoac; ?> | nao conforme eficacia <?= $naoconformeeficaciaac; ?> | indisponibilidade - <?= $indisponibilidadeac; ?> ">{{$contacat}}</div></td>
+                                                            <td><div data-toggle="tooltip" title="Falha de conformidade - <?= $falhaac; ?> | Não conforme com o prazo - <?= $naoconformeprazoac; ?> | Não conforme com a  eficácia <?= $naoconformeeficaciaac; ?> | Indisponibilidade de IC |  <?= $indisponibilidadeac; ?> ">{{$contacat}}</div></td>
                                                         </tr>
                                                         <tr >
                                                             <td style="background: #ffb3d9;">IEPC005D</td>
@@ -666,10 +666,10 @@
                                                             ?>
                                                             <td>{{$total05D}}</td>
                                                             <!-- Not Acat-->
-                                                            <td><div data-toggle="tooltip" title="falha - <?= $falhanac; ?> | nao conforme prazo - <?= $naoconformeprazonac; ?> | nao conforme eficacia <?= $naoconformeeficacianac; ?> | indisponibilidade - <?= $indisponibilidadenac; ?> ">{{$contnacat}}</div></td>
+                                                            <td><div data-toggle="tooltip" title="Falha de conformidade - <?= $falhanac; ?> | Não conforme com o prazo - <?= $naoconformeprazonac; ?> | Não conforme com a  eficácia <?= $naoconformeeficacianac; ?> | Indisponibilidade de IC |  <?= $indisponibilidadenac; ?> ">{{$contnacat}}</div></td>
 
                                                             <!-- Acat-->
-                                                            <td><div data-toggle="tooltip" title="falha - <?= $falhaac; ?> | nao conforme prazo - <?= $naoconformeprazoac; ?> | nao conforme eficacia <?= $naoconformeeficaciaac; ?> | indisponibilidade - <?= $indisponibilidadeac; ?> ">{{$contacat}}</div></td>
+                                                            <td><div data-toggle="tooltip" title="Falha de conformidade - <?= $falhaac; ?> | Não conforme com o prazo - <?= $naoconformeprazoac; ?> | Não conforme com a  eficácia <?= $naoconformeeficaciaac; ?> | Indisponibilidade de IC |  <?= $indisponibilidadeac; ?> ">{{$contacat}}</div></td>
                                                         </tr>
                                                         <tr >
                                                             <td style="background: #ffb3d9;">IEPC005P</td>
@@ -733,9 +733,9 @@
                                                             ?>
                                                             <td>{{$total05P}}</td>
                                                             <!-- Not Acat-->
-                                                            <td><div data-toggle="tooltip" title="falha - <?= $falhanac; ?> | nao conforme prazo - <?= $naoconformeprazonac; ?> | nao conforme eficacia <?= $naoconformeeficacianac; ?> | indisponibilidade - <?= $indisponibilidadenac; ?> ">{{$contnacat}}</div></td>                                                     
+                                                            <td><div data-toggle="tooltip" title="Falha de conformidade - <?= $falhanac; ?> | Não conforme com o prazo - <?= $naoconformeprazonac; ?> | Não conforme com a  eficácia <?= $naoconformeeficacianac; ?> | Indisponibilidade de IC |  <?= $indisponibilidadenac; ?> ">{{$contnacat}}</div></td>                                                     
                                                             <!-- Acat-->
-                                                            <td><div data-toggle="tooltip" title="falha - <?= $falhaac; ?> | nao conforme prazo - <?= $naoconformeprazoac; ?> | nao conforme eficacia <?= $naoconformeeficaciaac; ?> | indisponibilidade - <?= $indisponibilidadeac; ?> ">{{$contacat}}</div></td>
+                                                            <td><div data-toggle="tooltip" title="Falha de conformidade - <?= $falhaac; ?> | Não conforme com o prazo - <?= $naoconformeprazoac; ?> | Não conforme com a  eficácia <?= $naoconformeeficaciaac; ?> | Indisponibilidade de IC |  <?= $indisponibilidadeac; ?> ">{{$contacat}}</div></td>
                                                         </tr>
                                                         <tr >
                                                             <td style="background: #b3d9ff;">IEPC006</td>
@@ -799,9 +799,9 @@
                                                             ?>
                                                             <td>{{$total06}}</td>
                                                             <!-- Not Acat-->
-                                                            <td><div data-toggle="tooltip" title="falha - <?= $falhanac; ?> | nao conforme prazo - <?= $naoconformeprazonac; ?> | nao conforme eficacia <?= $naoconformeeficacianac; ?> | indisponibilidade - <?= $indisponibilidadenac; ?> ">{{$contnacat}}</div></td>                                                     
+                                                            <td><div data-toggle="tooltip" title="Falha de conformidade - <?= $falhanac; ?> | Não conforme com o prazo - <?= $naoconformeprazonac; ?> | Não conforme com a  eficácia <?= $naoconformeeficacianac; ?> | Indisponibilidade de IC |  <?= $indisponibilidadenac; ?> ">{{$contnacat}}</div></td>                                                     
                                                             <!-- Acat-->
-                                                            <td><div data-toggle="tooltip" title="falha - <?= $falhaac; ?> | nao conforme prazo - <?= $naoconformeprazoac; ?> | nao conforme eficacia <?= $naoconformeeficaciaac; ?> | indisponibilidade - <?= $indisponibilidadeac; ?> ">{{$contacat}}</div></td>
+                                                            <td><div data-toggle="tooltip" title="Falha de conformidade - <?= $falhaac; ?> | Não conforme com o prazo - <?= $naoconformeprazoac; ?> | Não conforme com a  eficácia <?= $naoconformeeficaciaac; ?> | Indisponibilidade de IC |  <?= $indisponibilidadeac; ?> ">{{$contacat}}</div></td>
                                                         </tr>
                                                         <tr >
                                                             <td style="background: #d9d9d9;">IDSP001</td>
@@ -865,9 +865,9 @@
                                                             ?>
                                                             <td>{{$total07}}</td>
                                                             <!-- Not Acat-->
-                                                            <td><div data-toggle="tooltip" title="falha - <?= $falhanac; ?> | nao conforme prazo - <?= $naoconformeprazonac; ?> | nao conforme eficacia <?= $naoconformeeficacianac; ?> | indisponibilidade - <?= $indisponibilidadenac; ?> ">{{$contnacat}}</div></td>                                                     
+                                                            <td><div data-toggle="tooltip" title="Falha de conformidade - <?= $falhanac; ?> | Não conforme com o prazo - <?= $naoconformeprazonac; ?> | Não conforme com a  eficácia <?= $naoconformeeficacianac; ?> | Indisponibilidade de IC |  <?= $indisponibilidadenac; ?> ">{{$contnacat}}</div></td>                                                     
                                                             <!-- Acat-->
-                                                            <td><div data-toggle="tooltip" title="falha - <?= $falhaac; ?> | nao conforme prazo - <?= $naoconformeprazoac; ?> | nao conforme eficacia <?= $naoconformeeficaciaac; ?> | indisponibilidade - <?= $indisponibilidadeac; ?> ">{{$contacat}}</div></td>
+                                                            <td><div data-toggle="tooltip" title="Falha de conformidade - <?= $falhaac; ?> | Não conforme com o prazo - <?= $naoconformeprazoac; ?> | Não conforme com a  eficácia <?= $naoconformeeficaciaac; ?> | Indisponibilidade de IC |  <?= $indisponibilidadeac; ?> ">{{$contacat}}</div></td>
                                                         </tr>
                                                         <tr style="background: #b3ffb3;">
                                                             <td>TOTAL</td>

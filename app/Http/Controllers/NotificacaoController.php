@@ -488,6 +488,29 @@ class NotificacaoController extends Controller
         $ncj->dt_justificativa = NULL;
         
         $ncj->bit_aceito = 2;
+        
+        $dt_now = Carbon::now();
+
+        $dt_prazo = Carbon::now()->addDay(2);
+        $ehferiado = DB::table('CALENDARIO')
+        ->where('dt_feriado','>=',$dt_now)
+        ->where('dt_feriado','<=',$dt_prazo)
+        ->count();
+
+        if($ehferiado >= 1):
+                $dt_prazo->addDay(1);
+            
+        endif;
+                
+        if($dt_prazo->dayOfWeek == '6'):
+            $dt_prazo->addDay(2);
+
+        elseif($dt_prazo->dayOfWeek == '0'):
+            $dt_prazo->addDay(2);
+
+            endif;
+
+        $ncj->dt_fim_justificativa = $dt_prazo->endOfDay();
 
 
         $ncj->save();
@@ -510,6 +533,29 @@ class NotificacaoController extends Controller
         $ncj->ds_naoacatado = NULL;
         $ncj->ma_avaliador = NULL;
         $ncj->bit_aceito = 3;
+        
+        $dt_now = Carbon::now();
+
+        $dt_prazo = Carbon::now()->addDay(2);
+        $ehferiado = DB::table('CALENDARIO')
+        ->where('dt_feriado','>=',$dt_now)
+        ->where('dt_feriado','<=',$dt_prazo)
+        ->count();
+
+        if($ehferiado >= 1):
+                $dt_prazo->addDay(1);
+            
+        endif;
+                
+        if($dt_prazo->dayOfWeek == '6'):
+            $dt_prazo->addDay(2);
+
+        elseif($dt_prazo->dayOfWeek == '0'):
+            $dt_prazo->addDay(2);
+
+            endif;
+
+        $ncj->dt_fim_justificativa = $dt_prazo->endOfDay();
 
 
         $ncj->save();
