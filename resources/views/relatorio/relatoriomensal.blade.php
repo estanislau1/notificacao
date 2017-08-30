@@ -71,7 +71,7 @@
 
                                             </select>
 
-                                            <select name="mes" class="select2" data-placeholder="Mês" title="Selecione o mês visualizar" >
+                                            <select id="mesrelmensal" name="mes" class="select2" data-placeholder="Mês" title="Selecione o mês visualizar" >
                                                 <option value="01" <?php echo ($mes == '01') ? "selected" : ""; ?>>Janeiro</option>
                                                 <option value="02" <?php echo ($mes == '02') ? "selected" : ""; ?>>Fevereiro</option>
                                                 <option value="03" <?php echo ($mes == '03') ? "selected" : ""; ?>>Março</option>
@@ -187,7 +187,7 @@
 
                                             <div class="table-responsive">
 
-                                                <table  class="table table-bordered table-striped-col dataTable1">
+                                                <table  class="table table-bordered table-striped-col dataTable1 tabelarelatorio">
                                                     <thead>
                                                         <tr>
                                                             <th>Nº</th>

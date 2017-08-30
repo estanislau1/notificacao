@@ -84,7 +84,7 @@
                             <option value=""></option>
             
                               @foreach ($Contratos as $Contrato)
-                                      <option value="{{ $Contrato->id_contrato }}">{{ $Contrato->nu_contrato }}</option>
+                                      <option value="{{ $Contrato->id_contrato }}">{{$Contrato->no_empresa}} - {{ $Contrato->nu_contrato }}</option>
                               @endforeach
       
                           </select>

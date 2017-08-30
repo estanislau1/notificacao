@@ -41,7 +41,7 @@
                                     </div>
                                 @endif
                                   
-                               <form id="" name="" enctype="multipart/form-data" action='{{ url("notificacao/buscarmes")}}' method="post" class="">
+                               <form id="" name="" enctype="multipart/form-data" action='{{ url("buscarmes")}}' method="post" class="">
                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                 <div class="menu-mes">

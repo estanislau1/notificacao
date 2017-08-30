@@ -66,10 +66,16 @@ class NotificacaoController extends Controller
 
         //Pegando informações do usuário que está acessando o sistema 
         $matricula = getenv('USERNAME');
-
+        
+        $Contratos = DB::table('CONTRATOS')
+                ->join('EMPRESA','EMPRESA.id_empresa', '=','CONTRATOS.id_empresa' )
+                ->where('EMPRESA.deleted_at', null)
+                ->where('CONTRATOS.deleted_at', null)
+                ->select('CONTRATOS.*','EMPRESA.*')
+                ->get();
         //Carregando modulos
         $Empresas = Empresa::all();
-        $Contratos = Contrato::all();
+        //$Contratos = Contrato::all();
         $Contextos = Contexto::all();
         $Macrocelulas = Macrocelula::all();
         $Celulas = Celula::all();
@@ -77,7 +83,7 @@ class NotificacaoController extends Controller
         $Coordenacoes = Coordenacao::orderBy('nu_coordenacao', 'asc')->get();
         $Impactos = Impacto::all();
         $Motivos = Motivo::orderBy('no_motivo', 'asc')->get();
-        $Indicadores = Indicador::all();
+        $Indicadores = Indicador::orderBy('sg_indicador','asc')->get();
 
         //Carregando View e repassando as variaveis necessárias
         return view('notificacaoNova', ['matricula' => $matricula,

@@ -212,6 +212,20 @@ margin-bottom: 20px;
 .menu-mes button{
   margin-left: 10px;
 }
+#id_contrato{
+    width: 10% ! important;
+}
+#mesrelmensal{
+    width: 10% ! important;
+}
+.matricula{
+    position: absolute;
+    top:-50px;
+    
+}
+.tabelarelatorio th{
+    text-align: center;
+}
 
 
 /*Seção do css desenvolvido por Pedro Chaves*/
@@ -9298,12 +9312,12 @@ blockquote {
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -11px;
+  margin-top: -65px;
   margin-left: -10px;
 }
 .menutoggle:hover,
 .menutoggle:focus {
-  color: #9fa8bc;
+  color: white;
 }
 .searchpanel {
   position: absolute;

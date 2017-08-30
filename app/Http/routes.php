@@ -18,10 +18,10 @@ Route::Post('/notificacao/incluirautorizacao/', 'NotificacaoController@incluirau
 Route::Get('/notificacao/ver/{id}', 'NotificacaoController@ver');
 Route::Get('/notificacao/corrigir/{id}', 'NotificacaoController@corrigir');
 Route::Get('/notificacao/devolverpreposto/{id}', 'NotificacaoController@devolverpreposto');
-Route::Post('/notificacao/buscar', 'NotificacaoController@buscar');
+Route::Post('/buscar', 'NotificacaoController@buscar');
 Route::Get('/notificacao/validar', 'NotificacaoController@validarnotificacao');
 Route::Get('/notificacao/testar', 'NotificacaoController@testarfuncoes');
-Route::Post('/notificacao/buscarmes', 'NotificacaoController@buscarmes');
+Route::Post('/buscarmes', 'NotificacaoController@buscarmes');
 
 
 
