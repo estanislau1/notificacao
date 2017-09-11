@@ -11,7 +11,7 @@
        			<a href="{{ url("notificacao/nova")}}">
        				<button class="btn btn-blue btn-quirk" style="width:100%">Abrir notificação</button>
        			</a>
-       			<a style="margin-top:15px; display:block;" href="{{ url("descumprimento/novo")}}">
+       			<a style="margin-top:15px; display:none;" href="{{ url("descumprimento/novo")}}">
        				<button class="btn btn-blue btn-quirk" style="width:100%">Abrir descumprimento</button>
        			</a>
           </div>
@@ -38,9 +38,11 @@
             <ul class="nav nav-pills nav-stacked nav-quirk">
             
               <li><a href="{{ url("notificacao")}}"><i class="fa fa-asterisk"></i> <span>Nível de serviço</span></a></li>
-              <li><a href="{{ url("descumprimento")}}"><i class="fa fa-list"></i> <span>Contratual</span></a></li>
+              <li><a style="display: none; "href="{{ url("descumprimento")}}"><i class="fa fa-list"></i> <span>Contratual</span></a></li>
 			
 			<h5 class="sidebar-title">Navegação</h5>
+              @if(Session::get('isrh') == 1)
+              
               <li class="nav-parent">
                 <a href=""><i class="fa fa-check-square"></i> <span>Administração</span></a>
                 <ul class="children">
@@ -68,6 +70,7 @@
 
                 </ul>
               </li>
+              @endif
               <li class="nav-parent"><a href=""><i class="fa fa-bar-chart"></i> <span>Relatórios</span></a>
                 <ul class="children">
                    <li><a href="{{ url('relatorio/notificacao_por_contrato')}}">Notificações por contrato</a></li>
