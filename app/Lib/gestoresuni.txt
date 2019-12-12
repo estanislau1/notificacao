@@ -1,0 +1,64 @@
+﻿c128130;Adriano Celso de Almeida Santos;CEPTIBR06 - Coordenação de Qualidade de Serviços de TI
+c113733;Alan Araujo Campelo;CEPTIBR21 - Coordenação de Suporte Plataforma Baixa
+c128147;Aloísia Cintia Chagas Felipe;CEPTIBR01 - Coordenação de Pessoas e Instalações
+c065023;André Luis Castro Nascimento;CEPTIBR05 - Coordenação de Segurança e Continuidade
+c122802;Bruno Guedes Souto;CEPTIBR35 - Planejamento e Controle de Produção de Cartões
+c081524;Camila de Lima Fernandes;CEPTIBR06 - Coordenação de Qualidade de Serviços de TI
+c072733;Carlos Virgínio dos Santos;CEPTIBR91 - Coordenação de Operação Noturna
+c076366;Caticiane da Silva Santos;CEPTIBR20 - Coordenação de Suporte Plataforma Intermediária
+c057597;Cesar Asvolinsque Diogo de Faria;CEPTIBR31 - Coordenação de Bases de Dados
+c113335;Cleidson Gomes Tavares;CEPTIBR40 - Coordenação de Integração e Projetos
+c134553;Éder de Sousa Melo;CEPTIBR40 - Coordenação de Integração e Projetos
+c108814;Edmilson Francisco Barbosa;CEPTIBR35 - Planejamento e Controle de Produção de Cartões
+c073453;Eduardo Bandel Tusco;CEPTIBR32 - Planejamento e Controle da Produção - Batch
+c109790;Eduardo Oliveira Cavalcanti;CEPTIBR32 - Planejamento e Controle da Produção - Batch
+c081204;Felipe de Abreu Corrêa;CEPTIBR08 - Coordenação de Incidentes e Monitoração
+c060060;Filipe da Silva e Souza;CEPTIBR34 - Planejamento e Controle da Produção - Online
+c052935;Gerson Akira Suzuqui;CEPTIBR08 - Coordenação de Incidentes e Monitoração
+c046244;Gilvan Ferreira de Andrade;CEPTIBR91 - Coordenação de Operação Noturna
+c058879;Giselle Honorato Machado Mori;CEPTIBR01 - Coordenação de Pessoas e Instalações
+c089573;Gleisson Ribeiro Alves;CEPTIBR31 - Coordenação de Bases de Dados
+c076767;Guilherme Brandão Jansen Melo;CEPTIBR23 - Coordenação de Suporte Plataforma Alta
+c087355;Hebert Luiz de Sousa Cirino;CEPTIBR91 - Coordenação de Operação Noturna
+c053059;Henrique dos Santos Viana;CEPTIBR41 - Coordenação de Homologação
+c060271;Humberto Tosetto Filho;CEPTIBR21 - Coordenação de Suporte Plataforma Baixa
+c134536;Ivan Alves de Oliveira;CEPTIBR20 - Coordenação de Suporte Plataforma Intermediária
+c081821;João Bosco Carneiro Barbosa Filho;CEPTIBR40 - Coordenação de Integração e Projetos
+c078041;João Júnior Viana Reis;CEPTIBR23 - Coordenação de Suporte Plataforma Alta
+c035491;Joselito Mondadori de Oliveira;CEPTIBR91 - Coordenação de Operação Noturna
+c127224;Lazaro Castro Silva;CEPTIBR40 - Coordenação de Integração e Projetos
+c080001;Leonardo Jordão Dias;CEPTIBR35 - Planejamento e Controle de Produção de Cartões
+c074330;Leonardo Nacacio Ricardo Simão;CEPTIBR05 - Coordenação de Segurança e Continuidade
+c080197;Lidiana Gomes Bezerra;CEPTIBR49 - Coordenação de Mudanças e Configuração
+c127241;Luiz Cláudio Pereira Costa;CEPTIBR40 - Coordenação de Integração e Projetos
+c107834;Luiz Gustavo Marinho de Almeida;CEPTIBR36 - Coordenação de Capacidade - Desempenho e Arquitetura de Serviço
+c081843;Marcelo Henrique Araujo Ferreira;CEPTIBR34 - Planejamento e Controle da Produção - Online
+c084911;Marcelo Zacheu Conti;CEPTIBR91 - Coordenação de Operação Noturna
+c074714;Márcia Rosana de Souza Razzolini;CEPTIBR06 - Coordenação de Qualidade de Serviços de TI
+c074713;Marcus Estevão Sousa Lopes;CEPTIBR40 - Coordenação de Integração e Projetos
+c081894;Messias Marra de Castro Júnior;CEPTIBR91 - Coordenação de Operação Noturna
+c094919;Olivier Sé Amantea;CEPTIBR08 - Coordenação de Incidentes e Monitoração
+c134576;Paulo Felipe de Araujo Júnior;CEPTIBR35 - Planejamento e Controle de Produção de Cartões
+c097789;Rafael Braga Gomes;CEPTIBR32 - Planejamento e Controle da Produção - Batch
+c081229;Rafael Dias Silva;CEPTIBR09 - Gerência de Centralizadora
+c113779;Raibatan Felipe Gonçalves Neiva;CEPTIBR34 - Planejamento e Controle da Produção - Online
+c103837;Reinaldo Barboza dos Santos;CEPTIBR20 - Coordenação de Suporte Plataforma Intermediária
+c095195;Ricardo Ferreira Martins;CEPTIBR36 - Coordenação de Capacidade - Desempenho e Arquitetura de Serviço
+c095703;Roberto Campos dos Santos;CEPTIBR40 - Coordenação de Integração e Projetos
+c052927;Rodrigo Peres Paiva Lacerda;CEPTIBR05 - Coordenação de Segurança e Continuidade
+c127225;Rogério de Oliveira;CEPTIBR35 - Planejamento e Controle de Produção de Cartões
+c134537;Ruy Leonardo Aparecido Furtado;CEPTIBR35 - Planejamento e Controle de Produção de Cartões
+c058366;Sérgio Costa de Carvalho;CEPTIBR33 - CEPTIBR33 - Coordenação de Armazenamento
+c110517;Soraia Vieira Vasconcelos;CEPTIBR43 - Gerência de Mudanças
+c053063;Taynã Nery Correa Lobo;CEPTIBR40 - Coordenação de Integração e Projetos
+c075779;Thiago de Assunção Cerqueira;CEPTIBR40 - Coordenação de Integração e Projetos
+c098678;Thiago Nogueira Baptistella;CEPTIBR06 - Coordenação de Qualidade de Serviços de TI
+c134542;Tiago Ferreira Luz;CEPTIBR40 - Coordenação de Integração e Projetos
+c135328;Tiago Oliveira Provasi;CEPTIBR23 - Coordenação de Suporte Plataforma Alta
+c053069;Valter de Oliveira Freitas;CEPTIBR31 - Coordenação de Bases de Dados
+c120613;Victor Thiago Batista da Silva;CEPTIBR20 - Coordenação de Suporte Plataforma Intermediária
+c095680;Vilmar Batista da Silva;CEPTIBR40 - Coordenação de Integração e Projetos
+c116571;Vladimir Thomaz Monteiro;CEPTIBR21 - Coordenação de Suporte Plataforma Baixa
+c126117;Wellington de Farias Cavalcante;CEPTIBR34 - Planejamento e Controle da Produção - Online
+c113752;Wellington Rodrigues de Carvalho;CEPTIBR43 - Gerência de Mudanças
+c073466;Wesley Ribeiro Gonçalves Neiva;CEPTIBR40 - Coordenação de Integração e Projetos

@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://df7259et045'),
+    'url' => env('APP_URL', 'http://df7259et921'),
 
     /*
     |--------------------------------------------------------------------------
@@ -147,15 +147,18 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Adldap\Laravel\AdldapServiceProvider::class,
+       
         
-        /*Adldap\Laravel\AdldapServiceProvider::class,
-         * Application Service Providers...  'Adldap' => Adldap\Laravel\Facades\Adldap::class,
+        /*
+         * Application Service Providers...  
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
 
     ],
 
@@ -202,7 +205,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        
+        'Adldap' => Adldap\Laravel\Facades\Adldap::class,
+        'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
 
     ],
 

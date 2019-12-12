@@ -21,9 +21,13 @@ class RhController extends Controller
 	
     public function index()
     {
+        if (session('matricula') == null) {
+            return view('notificacaoLogin', ['status' => 'expirado']);
+            die();
+        }
 
         //Pegando informações do usuário que está acessando o sistema
-        $matricula  	= getenv('USERNAME');
+        $matricula = session('matricula');
 
         //Listando todas as coordenações 
         $Coordenacoes 	= Coordenacao::all();
@@ -50,9 +54,13 @@ class RhController extends Controller
 
     public function editar($id)
     {
+        if (session('matricula') == null) {
+            return view('notificacaoLogin', ['status' => 'expirado']);
+            die();
+        }
         
         //Pegando informações do usuário que está acessando o sistema 
-        $matricula  =  getenv('USERNAME');
+        $matricula = session('matricula');
 
          //Listando as empresas
 	        $Contratos = Contrato::all();
@@ -78,6 +86,10 @@ class RhController extends Controller
 
     public function incluir(Request $request) 
     {
+        if (session('matricula') == null) {
+            return view('notificacaoLogin', ['status' => 'expirado']);
+            die();
+        }
 
         //Verificando se a solicitação veio da inclusão ou edição
         if($request->input('idrh') == "") { 
@@ -101,6 +113,10 @@ class RhController extends Controller
 
     public function delete($id)
     {
+        if (session('matricula') == null) {
+            return view('notificacaoLogin', ['status' => 'expirado']);
+            die();
+        }
         //Encontrando e deletando Contrato (softDelete)
         $Rh = Rh::find($id);
         $Rh->delete();

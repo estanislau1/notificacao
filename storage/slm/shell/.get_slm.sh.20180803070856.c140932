@@ -1,0 +1,30 @@
+#!/bin/bash
+set -x
+
+cd /var/www/html/notificacoes/storage/slm/new
+arq_dia='slm_'$(date +%d%m%Y)'.csv'
+arq=$(ls $arq_dia 2>> /dev/null)
+log=slm-$(date '+%d-%m-%Y').log
+
+if [ -e "$arq" ]
+then
+    echo "Arquivo $arq existe! movendo para OLD..." >> "$log"
+    mv $arq $arq'.old'
+    mv *.old* ../old
+fi
+
+wget http://signs.rerop.coredf.caixa/Aplicacao/Relatórios%20SLM%20de%20Incidentes/2018/PRO/$arq_dia >> ${log}
+
+existe=$(echo $?)
+
+if [ $existe -eq 0 ]
+then
+    echo "Arquivo baixado com sucesso!" >> "$log"
+
+else
+    echo "Nao foi possivel baixar o arquivo! Falha no wget" >> "$log"
+    mv $log ../log
+    exit 1
+fi
+
+mv $log ../log

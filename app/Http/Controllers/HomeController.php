@@ -15,8 +15,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if (session('matricula') == null) {
+            return view('notificacaoLogin', ['status' => 'expirado']);
+            die();
+        }
 
-        $matricula  =   getenv('USERNAME');
+        $matricula = session('matricula');
 
         return view('welcome', ['matricula' => $matricula]);
     }

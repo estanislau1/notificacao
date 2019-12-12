@@ -25,7 +25,7 @@
         <ul class="nav nav-tabs">
           <li class="active"><a href="#popular" data-toggle="tab"
             aria-expanded="false">Agentes de contratos cadastrados</a></li>
-          <li class=""><a href="#recent" data-toggle="tab"
+            <li class="btn-blue"><a class="destaque" href="#recent" data-toggle="tab"
             aria-expanded="false">Adicionar novo agente</a></li>
         </ul>
         <!--Final da ABAS DA TAB --> 

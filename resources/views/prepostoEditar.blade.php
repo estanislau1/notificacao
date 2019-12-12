@@ -23,8 +23,7 @@
 
          <!-- ABAS DA TAB -->  
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#recent" data-toggle="tab"
-            aria-expanded="false">Editar Preposto</a></li>
+          <li class="active"><a href="#recent" data-toggle="tab" aria-expanded="false">Editar Preposto</a></li>
         </ul>
         <!--Final da ABAS DA TAB --> 
 
@@ -71,8 +70,6 @@
                                   @else
                                       <option value="{{ $Contrato->id_contrato }}">{{ $Contrato->nu_contrato }}</option>
                                   @endif
-                                
-                              
 
                               @endforeach
       

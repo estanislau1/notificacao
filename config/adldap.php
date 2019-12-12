@@ -34,7 +34,7 @@ return [
             |
             */
 
-            'auto_connect' => true,
+            'auto_connect' => false,
 
             /*
             |--------------------------------------------------------------------------
@@ -118,7 +118,7 @@ return [
                 |
                 */
 
-                'domain_controllers' => explode(' ', env('ADLDAP_CONTROLLERS', 'corp-dc1.corp.acme.org corp-dc2.corp.acme.org')),
+                'domain_controllers' => explode(' ', env('ADLDAP_CONTROLLERS', 'ldapcluster.corecaixa')),
 
                 /*
                 |--------------------------------------------------------------------------
@@ -129,7 +129,7 @@ return [
                 |
                 */
 
-                'port' => env('ADLDAP_PORT', 389),
+                'port' => env('ADLDAP_PORT', 489),
 
                 /*
                 |--------------------------------------------------------------------------
@@ -158,7 +158,7 @@ return [
                 |
                 */
 
-                'base_dn' => env('ADLDAP_BASEDN', 'dc=corp,dc=acme,dc=org'),
+                'base_dn' => env('ADLDAP_BASEDN', 'dc=ldapcluster.corecaixa'),
 
                 /*
                 |--------------------------------------------------------------------------
@@ -187,8 +187,8 @@ return [
                 |
                 */
 
-                'admin_username' => env('ADLDAP_ADMIN_USERNAME', 'username'),
-                'admin_password' => env('ADLDAP_ADMIN_PASSWORD', 'password'),
+                'admin_username' => env('ADLDAP_ADMIN_USERNAME', 'c140932'),
+                'admin_password' => env('ADLDAP_ADMIN_PASSWORD', 'Karol30'),
 
                 /*
                 |--------------------------------------------------------------------------

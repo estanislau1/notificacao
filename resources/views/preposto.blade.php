@@ -25,8 +25,8 @@
         <ul class="nav nav-tabs">
           <li class="active"><a href="#popular" data-toggle="tab"
             aria-expanded="false">Prepostos registrados</a></li>
-          <li class=""><a href="#recent" data-toggle="tab"
-            aria-expanded="false">Adicionar novo preposto</a></li>
+            <li class="btn-blue"><a class="destaque" href="#recent" data-toggle="tab"
+                                  aria-expanded="false">Adicionar novo preposto</a></li>
         </ul>
         <!--Final da ABAS DA TAB --> 
 

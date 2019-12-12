@@ -17,9 +17,13 @@ class ContextoController extends Controller
 {
     public function index()
     {
+        if (session('matricula') == null) {
+            return view('notificacaoLogin', ['status' => 'expirado']);
+            die();
+        }
         
         //Pegando informações do usuário que está acessando o sistema
-        $matricula  =   getenv('USERNAME');
+        $matricula = session('matricula');
 
         //Listando as empresas
         $Empresas = Empresa::all();    
@@ -41,13 +45,12 @@ class ContextoController extends Controller
 
     }
 
-
-
-
-
     public function editar($id)
     {
-        
+        if (session('matricula') == null) {
+            return view('notificacaoLogin', ['status' => 'expirado']);
+            die();
+        }
         //Pegando informações do usuário que está acessando o sistema 
         $matricula  =  getenv('USERNAME');
         $Contratos = Contrato::all();
@@ -70,6 +73,10 @@ class ContextoController extends Controller
     public function incluir(Request $request) 
     {
 
+        if (session('matricula') == null) {
+            return view('notificacaoLogin', ['status' => 'expirado']);
+            die();
+        }
         //Verificando se a solicitação veio da inclusão ou edição
         if($request->input('idcontexto') == "") { 
             $Contexto = new Contexto;
@@ -94,6 +101,10 @@ class ContextoController extends Controller
 
     public function delete($id)
     {
+        if (session('matricula') == null) {
+            return view('notificacaoLogin', ['status' => 'expirado']);
+            die();
+        }
         //Encontrando e deletando Contrato (softDelete)
         $Contexto = Contexto::find($id);
         $Contexto->delete();

@@ -25,7 +25,7 @@
         <ul class="nav nav-tabs">
           <li class="active"><a href="#popular" data-toggle="tab"
             aria-expanded="false">Empresas registradas</a></li>
-          <li class=""><a href="#recent" data-toggle="tab"
+            <li class="btn-blue"><a class="destaque" href="#recent" data-toggle="tab"
             aria-expanded="false">Adicionar nova empresa</a></li>
         </ul>
         <!--Final da ABAS DA TAB --> 

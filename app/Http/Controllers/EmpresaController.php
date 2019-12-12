@@ -18,9 +18,13 @@ class EmpresaController extends Controller
 {
     public function index()
     {
+        if (session('matricula') == null) {
+            return view('notificacaoLogin', ['status' => 'expirado']);
+            die();
+        }
 
         //Pegando informações do usuário que está acessando o sistema
-        $matricula  =   getenv('USERNAME');
+        $matricula = session('matricula');
 
         //Listando as empresas
         $Empresas = Empresa::all();
@@ -50,6 +54,10 @@ class EmpresaController extends Controller
 
     public function editar($id)
     {
+        if (session('matricula') == null) {
+            return view('notificacaoLogin', ['status' => 'expirado']);
+            die();
+        }
         
         //Pegando informações do usuário que está acessando o sistema 
         $matricula  =  getenv('USERNAME');
@@ -73,6 +81,10 @@ class EmpresaController extends Controller
 
     public function incluir(Request $request) 
     {
+        if (session('matricula') == null) {
+            return view('notificacaoLogin', ['status' => 'expirado']);
+            die();
+        }
 
         //Verificando se a solicitação veio da inclusão ou edição
         if($request->input('idempresa') == "") { 
@@ -98,6 +110,10 @@ class EmpresaController extends Controller
 
     public function delete($id)
     {
+        if (session('matricula') == null) {
+            return view('notificacaoLogin', ['status' => 'expirado']);
+            die();
+        }
         //Encontrando e deletando Contrato (softDelete)
         $Empresa = Empresa::find($id);
         $Empresa->delete();
