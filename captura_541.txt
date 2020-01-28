@@ -1,0 +1,841 @@
+' ===========================================================================
+'
+' @name:     Captura_541
+' @version:  3.00
+' @date:     22/03/2016
+' @author: Joao Estanislau Gomea - C112699
+'
+' ===========================================================================
+
+Public sistema
+Public tela
+Public sessao
+Public nomesessao
+Public rota_pasta
+Public rota_contas
+Public rota_insert
+Public rota_insert2
+Public rota_data
+Public rota_log
+Public estacao, usuario, scriptdir, sureg
+Public vCodUsu, vSenUsu
+Public msg_log
+Public tt_contas
+Public tt_contas2
+Public tt_contas3
+Public dados_insert(30000, 50)
+Public dados_insert2(5000, 2)
+
+Principal()
+Wscript.Quit
+
+Function Principal()
+    
+    Set objNetwork = CreateObject("WScript.Network")
+    estacao = objNetwork.ComputerName
+    usuario = objNetwork.UserName
+    rota_pasta = "C:\MONITORAMENTO\ProgramFiles\Robo_Insert\"
+    Set objShell = CreateObject("WScript.Shell")
+    scriptdir = objShell.CurrentDirectory
+    sureg = Right(scriptdir, 2)
+    If (sureg <> "BR" And sureg <> "GO" And sureg <> "RE" And sureg <> "RJ" And sureg <> "BH" And sureg <> "FO" And sureg <> "MN" And sureg <> "SA" And sureg <> "CG" And sureg <> "CP" And sureg <> "FL" And sureg <> "PO" And sureg <> "BE" And sureg <> "CT" And sureg <> "SP" And sureg <> "VT") Then
+    MsgBox "Sureg Não Encontrada"
+    sureg = ""
+    End If
+    Call Verifica_Data
+    rota_contas = rota_pasta & "Pendentes\FORA_MULTIMAGEM_" & rota_data & sureg & ".txt"
+    rota_insert = rota_pasta & "Pendentes\" & sureg & "\Arquivos\R541" & sureg & "_" & rota_data & ".txt"
+    rota_insert2 = rota_pasta & "Pendentes\" & sureg & "\Arquivos\CTA_NAO_ENCONTRADAS_" & rota_data & sureg & ".txt"
+    rota_log = rota_pasta & "Arq_Log_Captura541" & sureg & ".txt"
+    vCodUsu = "c112699"
+    vSenUsu = ""
+    'vSenUsu = Plan1.Tx_Senha.Value
+    
+    msg_log = "!Iniciado Processamento"
+    Call Grava_Log
+    
+    If AbreRedeCaixa = False Then
+        Call Grava_Log
+        Exit Function
+    Else
+        If PesquisaSiuni = False Then
+            Call Grava_Log
+            Exit Function
+        Else
+            If PesquisaSiaut = False Then
+                Call Grava_Log
+                Exit Function
+            Else
+                Call Gera_Arquivo
+                Call Gera_Arquivo2
+                Call Gera_Arquivo3
+            End If
+        End If
+    End If
+    
+    msg_log = "Contas Encontradas: " & tt_contas3 & " | Contas Não Encontradas: " & tt_contas2
+    Call Grava_Log
+
+    msg_log = "*Processamento Finalizado"
+    Call Grava_Log
+
+End Function
+
+Function Verifica_Data()
+    
+    strArquivo = rota_pasta & "Pendentes\DATA_FORA_MULTIMAGEM_" & sureg & ".txt"
+    
+    ForReading = 1
+        
+    Set objFSO = CreateObject("Scripting.FileSystemObject")
+    Set objFileRead = objFSO.opentextfile(strArquivo, ForReading)
+    rota_data = objFileRead.readall
+    
+    objFileRead.Close
+
+End Function
+
+Function Grava_Log()
+
+    vAno = Year(Date - 1)
+    vMes = String(2 - Len(Month(Date - 1)), "0") & Month(Date - 1)
+    vDia = String(2 - Len(Day(Date - 1)), "0") & Day(Date - 1)
+    hh = Right("00" & Hour(Now), 2)
+    mm = Right("00" & Minute(Now), 2)
+    ss = Right("00" & Second(Now), 2)
+    
+    ForAppending = 8
+    ForWriting = 2
+    
+    Set objFSO = CreateObject("Scripting.FileSystemObject")
+    Set objFileWrite = objFSO.opentextfile(rota_log, ForAppending, True)
+    str_msg_log = vAno & "-" & vMes & "-" & vDia & "_" & hh & "-" & mm & "-" & ss & " | " & usuario & " | " & estacao & " | " & msg_log
+    objFileWrite.WriteLine str_msg_log
+    objFileWrite.Close
+    
+End Function
+
+Function Gera_Arquivo()
+    
+    ForAppending = 8
+    ForWriting = 2
+    
+    Set objFSO = CreateObject("Scripting.FileSystemObject")
+    If (objFSO.FileExists(rota_insert)) Then
+        objFSO.DeleteFile (rota_insert), True
+        Wscript.Sleep 1000
+    End If
+    Set objFileWrite = objFSO.opentextfile(rota_insert, ForAppending, True)
+    
+    i = 0
+    Do While i < tt_contas
+        i = i + 1
+        Wscript.Sleep 10
+        
+        str_dados = dados_insert(i, 1) & ";" & dados_insert(i, 2) & ";" & dados_insert(i, 3) & ";" & dados_insert(i, 4) & ";" & dados_insert(i, 5) & ";" & dados_insert(i, 6) & ";" & dados_insert(i, 7) & ";" & dados_insert(i, 8) & ";" & dados_insert(i, 9) & _
+        ";" & dados_insert(i, 10) & ";" & dados_insert(i, 11) & ";" & dados_insert(i, 12) & ";" & dados_insert(i, 13) & ";" & dados_insert(i, 14) & ";" & dados_insert(i, 15) & ";" & dados_insert(i, 16) & ";" & dados_insert(i, 17) & ";" & dados_insert(i, 18) & _
+        ";" & dados_insert(i, 19) & ";" & dados_insert(i, 20) & ";" & dados_insert(i, 21) & ";" & dados_insert(i, 22) & ";" & dados_insert(i, 23) & ";" & dados_insert(i, 24) & ";" & dados_insert(i, 25) & ";" & dados_insert(i, 26) & ";" & dados_insert(i, 27) & _
+        ";" & dados_insert(i, 28) & ";" & dados_insert(i, 29) & ";" & dados_insert(i, 30) & ";" & dados_insert(i, 31) & ";" & dados_insert(i, 32) & ";" & dados_insert(i, 33) & ";" & dados_insert(i, 34) & ";" & dados_insert(i, 35) & ";" & dados_insert(i, 36) & _
+        ";" & dados_insert(i, 37) & ";" & dados_insert(i, 38) & ";" & dados_insert(i, 39) & ";" & dados_insert(i, 40) & ";" & dados_insert(i, 41) & ";" & dados_insert(i, 42) & ";" & dados_insert(i, 43) & ";" & dados_insert(i, 44) & ";" & dados_insert(i, 45) & _
+        ";" & dados_insert(i, 46) & ";" & dados_insert(i, 47)
+        
+        objFileWrite.WriteLine str_dados
+
+    Loop
+
+    objFileWrite.Close
+    
+End Function
+
+Function Gera_Arquivo2()
+    
+    ForAppending = 8
+    ForWriting = 2
+    
+    Set objFSO = CreateObject("Scripting.FileSystemObject")
+    If (objFSO.FileExists(rota_insert2)) Then
+        objFSO.DeleteFile (rota_insert2), True
+        Wscript.Sleep 1000
+    End If
+    Set objFileWrite = objFSO.opentextfile(rota_insert2, ForAppending, True)
+    
+    i = 0
+    Do While i < tt_contas2
+        i = i + 1
+        Wscript.Sleep 10
+        
+        str_dados = dados_insert2(i, 1)
+        
+        objFileWrite.WriteLine str_dados
+
+    Loop
+
+    objFileWrite.Close
+    
+End Function
+
+Function Gera_Arquivo3()
+    
+    rota_captura = rota_pasta & "Pendentes\" & sureg & "\Executa_Captura541" & sureg & ".txt"
+    
+    ForAppending = 8
+    ForWriting = 2
+    
+    Set objFSO = CreateObject("Scripting.FileSystemObject")
+    If (objFSO.FileExists(rota_captura)) Then
+        objFSO.DeleteFile (rota_captura), True
+        Wscript.Sleep 1000
+    End If
+    Set objFileWrite = objFSO.opentextfile(rota_captura, ForAppending, True)
+    
+    str_dados = String(2 - Len(Day(Date)), "0") & Day(Date) & "/" & String(2 - Len(Month(Date)), "0") & Month(Date) & "/" & Year(Date)
+    
+    objFileWrite.WriteLine str_dados
+
+    objFileWrite.Close
+    
+End Function
+
+Function AbreRedeCaixa()
+    
+    Set sistema = CreateObject("EXTRA.System")
+    Set sessao = CreateObject("EXTRA.sessions")
+    
+    Set sessao = sistema.Sessions.Item(1)
+  
+    Set tela = sessao.Screen
+    nomesessao = sessao.Name
+    If (sistema Is Nothing) Then
+        MsgBox "Impossível criar objeto de sistema EXTRA. Abra o Rede Caixa."
+        msg_log = "Erro 1.1"
+        AbreRedeCaixa = False
+        Exit Function
+    Else
+        msg_log = "Conexao com EXTRA realizada com Sucesso"
+        Call Grava_Log
+        AbreRedeCaixa = True
+    End If
+  
+    sessao.Visible = True
+  
+    tempo = 3000
+    
+    sistema.TimeoutValue = tempo
+        
+End Function
+
+Function PesquisaSiaut()
+    
+    i = 0
+    cont = 0
+    Do While i < 1
+        Wscript.Sleep 10
+        If Trim(tela.area(17, 16, 17, 24)) = "SELECIONE" Then
+            i = 1
+        End If
+        cont = cont + 1
+        If cont > 1000 Then
+            msg_log = "Erro 2.1"
+            PesquisaSiaut = False
+            i = 1
+            Exit Function
+        End If
+    Loop
+          
+    tela.SendKeys ("<Home>")
+    tela.SendKeys ("541")
+    tela.SendKeys ("<ENTER>")
+    
+    i = 0
+    cont = 0
+    Do While i < 1
+        Wscript.Sleep 10
+        If Trim(tela.area(16, 4, 16, 12)) = "USUARIO" Then
+            i = 1
+        End If
+        cont = cont + 1
+        If cont > 1000 Then
+            msg_log = "Erro 2.2"
+            PesquisaSiaut = False
+            i = 1
+            Exit Function
+        End If
+    Loop
+
+    tela.SendKeys ("<Home>")
+    tela.SendKeys (vCodUsu)
+    tela.SendKeys ("<Tab>")
+    tela.SendKeys (vSenUsu)
+    tela.SendKeys ("<ENTER>")
+    
+    i = 0
+    cont = 0
+    Do While i < 1
+        Wscript.Sleep 10
+        If Trim(tela.area(1, 1, 1, 6)) = "UA22" Then
+            i = 1
+        End If
+        cont = cont + 1
+        If cont > 1000 Then
+            msg_log = "Erro 2.3"
+            PesquisaSiaut = False
+            i = 1
+            Exit Function
+        End If
+    Loop
+    
+    tela.SendKeys ("<Home>")
+    tela.SendKeys ("2")
+    tela.SendKeys ("<ENTER>")
+
+    i = 0
+    cont = 0
+    Do While i < 1
+        Wscript.Sleep 10
+        If Trim(tela.area(1, 29, 1, 34)) = "A293" Then
+            i = 1
+        End If
+        cont = cont + 1
+        If cont > 1000 Then
+            msg_log = "Erro 2.4"
+            PesquisaSiaut = False
+            i = 1
+            Exit Function
+        End If
+    Loop
+
+    tela.SendKeys ("<Home>")
+    tela.SendKeys ("<Tab>")
+    tela.SendKeys ("<ENTER>")
+
+    i = 0
+    cont = 0
+    Do While i < 1
+        Wscript.Sleep 10
+        If Trim(tela.area(1, 1, 1, 6)) = "A290" Then
+            i = 1
+        End If
+        cont = cont + 1
+        If cont > 1000 Then
+            msg_log = "Erro 2.5"
+            PesquisaSiaut = False
+            i = 1
+            Exit Function
+        End If
+    Loop
+    
+    j = 0
+    Do While j < tt_contas
+        j = j + 1
+        Wscript.Sleep 10
+        
+        tela.SendKeys ("<Home>")
+        tela.SendKeys ("16")
+        tela.SendKeys ("<ENTER>")
+        
+        i = 0
+        cont = 0
+        Do While i < 1
+            Wscript.Sleep 10
+            If Trim(tela.area(1, 1, 1, 6)) = "EX14" Then
+                i = 1
+            End If
+            cont = cont + 1
+            If cont > 1000 Then
+                msg_log = "Erro 2.6"
+                PesquisaSiaut = False
+                i = 1
+                Exit Function
+            End If
+        Loop
+        
+        tela.SendKeys ("<Home>")
+        tela.SendKeys dados_insert(j, 2)
+        tela.moveto 4, 31
+        tela.SendKeys dados_insert(j, 3)
+        tela.moveto 4, 45
+        tela.SendKeys dados_insert(j, 4) & dados_insert(j, 5)
+        tela.SendKeys ("<ENTER>")
+        flag = True
+        
+        i = 0
+        cont = 0
+        Do While i < 1
+            Wscript.Sleep 10
+            If Trim(tela.area(22, 26, 22, 34)) = "SUCESSO" Then
+                i = 1
+            End If
+            If Trim(tela.getstring(22, 13, 3)) = "NAO" Or Trim(tela.getstring(22, 17, 8)) = "RUCPO015" Then
+                tt_contas3 = tt_contas3 - 1
+                tt_contas2 = tt_contas2 + 1
+                vErroSiaut = Trim(tela.area(22, 4, 22, 79))
+                dados_insert2(tt_contas2, 1) = dados_insert(j, 2) & dados_insert(j, 3) & dados_insert(j, 4) & dados_insert(j, 5) & ";" & vErroSiaut
+                flag = False
+                tela.SendKeys ("<pf3>")
+                i2 = 0
+                cont2 = 0
+                Do While i2 < 1
+                    Wscript.Sleep 10
+                    If Trim(tela.area(1, 1, 1, 6)) = "A290" Then
+                        i2 = 1
+                    End If
+                    cont2 = cont2 + 1
+                    If cont2 > 1000 Then
+                        msg_log = "Erro 2.7"
+                        PesquisaSiaut = False
+                        i2 = 1
+                        Exit Function
+                    End If
+                Loop
+                i = 1
+            End If
+            If Trim(tela.area(22, 12, 22, 19)) = "TABELA" Then
+                tela.SendKeys ("<Home>")
+                tela.SendKeys ("<ENTER>")
+                Wscript.Sleep 10
+            End If
+            cont = cont + 1
+            If cont > 1000 Then
+                msg_log = "Erro 2.8"
+                PesquisaSiaut = False
+                i = 1
+                Exit Function
+            End If
+        Loop
+        
+        If flag = True Then
+            dados_insert(j, 1) = Trim(tela.getstring(13, 24, 10))
+            dados_insert(j, 7) = Trim(tela.getstring(6, 21, 32))
+            dados_insert(j, 8) = Trim(Left(Trim(tela.getstring(8, 14, 66)), InStr(Trim(tela.getstring(8, 14, 66)), ",") - 1))
+            dados_insert(j, 9) = Trim(tela.getstring(9, 33, 20))
+            dados_insert(j, 10) = Trim(Right(Trim(tela.getstring(8, 14, 66)), Len(Trim(tela.getstring(8, 14, 66))) - InStr(Trim(tela.getstring(8, 14, 66)), ",")))
+            dados_insert(j, 12) = Trim(tela.getstring(9, 11, 5)) & Trim(tela.getstring(9, 19, 3))
+            dados_insert(j, 14) = Trim(tela.getstring(6, 65, 12)) & Trim(tela.getstring(6, 78, 2))
+            tela.SendKeys ("<pf3>")
+            
+            i = 0
+            cont = 0
+            Do While i < 1
+                Wscript.Sleep 10
+                If Trim(tela.area(1, 1, 1, 6)) = "A290" Then
+                    i = 1
+                End If
+                cont = cont + 1
+                If cont > 1000 Then
+                    msg_log = "Erro 2.9"
+                    PesquisaSiaut = False
+                    i = 1
+                    Exit Function
+                End If
+            Loop
+            
+        End If
+        
+    Loop
+    
+    tela.SendKeys ("<pf3>")
+    
+    i = 0
+    cont = 0
+    Do While i < 1
+        Wscript.Sleep 10
+        If Trim(tela.area(1, 29, 1, 34)) = "A293" Then
+            i = 1
+        End If
+        cont = cont + 1
+        If cont > 1000 Then
+            msg_log = "Erro 2.10"
+            PesquisaSiaut = False
+            i = 1
+            Exit Function
+        End If
+    Loop
+    
+    tela.SendKeys ("<pf3>")
+    
+    i = 0
+    cont = 0
+    Do While i < 1
+        Wscript.Sleep 10
+        If Trim(tela.area(1, 1, 1, 6)) = "UA22" Then
+            i = 1
+        End If
+        cont = cont + 1
+        If cont > 1000 Then
+            msg_log = "Erro 2.11"
+            PesquisaSiaut = False
+            i = 1
+            Exit Function
+        End If
+    Loop
+    
+    tela.SendKeys ("<pf12>")
+    
+    PesquisaSiaut = True
+    
+End Function
+
+Function PesquisaSiuni()
+    
+    i = 0
+    cont = 0
+    Do While i < 1
+        Wscript.Sleep 10
+        If Trim(tela.area(17, 16, 17, 24)) = "SELECIONE" Then
+            i = 1
+        End If
+        cont = cont + 1
+        If cont > 1000 Then
+            msg_log = "Erro 2.1"
+            PesquisaSiaut = False
+            i = 1
+            Exit Function
+        End If
+    Loop
+          
+    tela.SendKeys ("<Home>")
+    tela.SendKeys ("541")
+    tela.SendKeys ("<ENTER>")
+    
+    i = 0
+    cont = 0
+    Do While i < 1
+        Wscript.Sleep 10
+        If Trim(tela.area(16, 4, 16, 12)) = "USUARIO" Then
+            i = 1
+        End If
+        cont = cont + 1
+        If cont > 1000 Then
+            msg_log = "Erro 2.2"
+            PesquisaSiaut = False
+            i = 1
+            Exit Function
+        End If
+    Loop
+
+    tela.SendKeys ("<Home>")
+    tela.SendKeys (vCodUsu)
+    tela.SendKeys ("<Tab>")
+    tela.SendKeys (vSenUsu)
+    tela.SendKeys ("<ENTER>")
+    
+    i = 0
+    cont = 0
+    Do While i < 1
+        Wscript.Sleep 10
+        If Trim(tela.area(1, 1, 1, 6)) = "UA22" Then
+            i = 1
+        End If
+        cont = cont + 1
+        If cont > 1000 Then
+            msg_log = "Erro 2.3"
+            PesquisaSiaut = False
+            i = 1
+            Exit Function
+        End If
+    Loop
+    
+    tela.SendKeys ("<Home>")
+    tela.SendKeys ("1")
+    tela.SendKeys ("<ENTER>")
+    
+    i = 0
+    cont = 0
+    Do While i < 1
+        Wscript.Sleep 10
+        If Trim(tela.getstring(1, 2, 4)) = "IU10" Then
+            i = 1
+        End If
+        cont = cont + 1
+        If cont > 1000 Then
+            msg_log = "Erro 3.1"
+            PesquisaSiuni = False
+            i = 1
+            Exit Function
+        End If
+    Loop
+       
+    tela.SendKeys ("<Home>")
+    tela.SendKeys ("1")
+    tela.SendKeys ("<ENTER>")
+    
+    i = 0
+    cont = 0
+    Do While i < 1
+        Wscript.Sleep 10
+        If Trim(tela.getstring(1, 2, 4)) = "IU18" Then
+            i = 1
+        End If
+        cont = cont + 1
+        If cont > 1000 Then
+            msg_log = "Erro 3.2"
+            PesquisaSiuni = False
+            i = 1
+            Exit Function
+        End If
+    Loop
+    
+    ForReading = 1
+    
+    Set objFSO = CreateObject("Scripting.FileSystemObject")
+    Set objFileRead = objFSO.opentextfile(rota_contas, ForReading)
+        
+    tt_contas = 0
+    tt_contas2 = 0
+    Do Until objFileRead.AtEndOfStream
+        tt_contas = tt_contas + 1
+        strLinha = objFileRead.ReadLine
+        
+        vCodAge = Left(strLinha, 4)
+        vCodOpe = Mid(strLinha, 5, 3)
+        vNumCon = Right(strLinha, 9)
+        vErroSiaut = ""
+        
+        dados_insert(tt_contas, 2) = vCodAge
+        dados_insert(tt_contas, 3) = vCodOpe
+        dados_insert(tt_contas, 4) = Left(vNumCon, 8)
+        dados_insert(tt_contas, 5) = Right(vNumCon, 1)
+        dados_insert(tt_contas, 13) = "I"
+        dados_insert(tt_contas, 28) = "R541"
+        
+        tela.SendKeys ("<Home>")
+        tela.SendKeys (vCodAge)
+        tela.moveto 7, 31
+        tela.SendKeys (vCodOpe)
+        tela.moveto 8, 31
+        tela.SendKeys (vNumCon)
+        tela.SendKeys ("<ENTER>")
+        flag = True
+                
+        i = 0
+        cont = 0
+        cont2 = 0
+        Do While i < 1
+            Wscript.Sleep 10
+            If Trim(tela.getstring(1, 2, 4)) = "IU75" Or Trim(tela.getstring(1, 2, 4)) = "IU22" Then
+                i = 1
+            End If
+            cont = cont + 1
+            If cont > 1000 Then
+                msg_log = "Erro 3.3 - Conta: " & dados_insert(tt_contas, 2) & dados_insert(tt_contas, 3) & dados_insert(tt_contas, 4) & dados_insert(tt_contas, 5)
+                PesquisaSiuni = False
+                i = 1
+                Exit Function
+            End If
+            cont2 = cont2 + 1
+            If cont2 > 300 Then
+                If Trim(tela.getstring(23, 3, 8)) <> "Preencha" Then
+                    dados_insert(tt_contas, 13) = "N"
+                    tt_contas3 = tt_contas3 - 1
+                    tt_contas2 = tt_contas2 + 1
+                    vErroSiaut = Trim(tela.area(23, 3, 23, 79))
+                    dados_insert2(tt_contas2, 1) = dados_insert(tt_contas, 2) & dados_insert(tt_contas, 3) & dados_insert(tt_contas, 4) & dados_insert(tt_contas, 5) & ";" & vErroSiaut
+                    flag = False
+                    i = 1
+                End If
+            End If
+        Loop
+        
+        If flag = True Then
+            
+            tela.SendKeys ("<ENTER>")
+            
+            i = 0
+            cont = 0
+            Do While i < 1
+                Wscript.Sleep 10
+                If Trim(tela.getstring(1, 2, 4)) = "IU42" Then
+                    i = 1
+                    Wscript.Sleep 10
+                    tela.SendKeys ("<Home>")
+                End If
+                cont = cont + 1
+                If cont > 1000 Then
+                    msg_log = "Erro 3.4 - Conta: " & dados_insert(tt_contas, 2) & dados_insert(tt_contas, 3) & dados_insert(tt_contas, 4) & dados_insert(tt_contas, 5)
+                    PesquisaSiuni = False
+                    i = 1
+                    Exit Function
+                End If
+            Loop
+            
+            ag_op_conta_dv = dados_insert(tt_contas, 2) & "-" & dados_insert(tt_contas, 3) & "-" & dados_insert(tt_contas, 4) & "/" & dados_insert(tt_contas, 5)
+            
+            Do Until tela.getstring(23, 3, 3) = "Nao"
+                For conta = 11 To 19
+                    Wscript.Sleep 10
+                    If tela.getstring(conta, 4, 19) = ag_op_conta_dv Then
+                        tela.moveto conta, 2
+                        tela.SendKeys ("<ENTER>")
+                        Wscript.Sleep 1
+                        
+                        If Trim(tela.getstring(23, 3, 9)) = "RUC X 005" Then
+                            Wscript.Sleep 10
+                            tela.SendKeys ("<ENTER>")
+                        End If
+                        
+                        i = 0
+                        cont = 0
+                        Do While i < 1
+                            Wscript.Sleep 10
+                            If Trim(tela.getstring(1, 2, 4)) = "IU44" Then
+                                i = 1
+                            End If
+                            cont = cont + 1
+                            If cont > 1000 Then
+                                msg_log = "Erro 3.5 - Conta: " & dados_insert(tt_contas, 2) & dados_insert(tt_contas, 3) & dados_insert(tt_contas, 4) & dados_insert(tt_contas, 5)
+                                PesquisaSiuni = False
+                                i = 1
+                                Exit Function
+                            End If
+                        Loop
+                        
+                        Exit Do
+                    End If
+                Next
+                tela.SendKeys ("<Pf8>")
+                Wscript.Sleep 10
+            Loop
+            
+            If Trim(tela.getstring(15, 12, 9)) = "Titulares" Then
+                
+                tela.moveto 15, 6
+                tela.SendKeys ("<ENTER>")
+                
+                i = 0
+                cont = 0
+                Do While i < 1
+                    Wscript.Sleep 10
+                    If Trim(tela.getstring(1, 2, 4)) = "IU56" Then
+                        i = 1
+                    End If
+                    cont = cont + 1
+                    If cont > 1000 Then
+                        msg_log = "Erro 3.6 - Conta: " & dados_insert(tt_contas, 2) & dados_insert(tt_contas, 3) & dados_insert(tt_contas, 4) & dados_insert(tt_contas, 5)
+                        PesquisaSiuni = False
+                        i = 1
+                        Exit Function
+                    End If
+                Loop
+                
+                dados_insert(tt_contas, 26) = Trim(tela.getstring(6, 11, 10))
+                            
+                Do Until tela.getstring(23, 3, 3) = "Nao"
+                Wscript.Sleep 10
+                For conta = 15 To 18 Step 3
+                    If Trim(tela.getstring(conta, 4, 2)) <> "" Then
+                        Select Case tela.getstring(conta, 4, 2)
+                            Case "01"
+                                dados_insert(tt_contas, 16) = Trim(tela.getstring(conta, 30, 15))
+                                dados_insert(tt_contas, 18) = Trim(tela.getstring(conta, 50, 8))
+                                dados_insert(tt_contas, 19) = Trim(tela.getstring(conta, 60, 2))
+                                dados_insert(tt_contas, 24) = Trim(tela.getstring(conta, 65, 3))
+                                dados_insert(tt_contas, 25) = Trim(tela.getstring(conta, 69, 10))
+                            Case "02"
+                                dados_insert(tt_contas, 34) = Trim(tela.getstring(conta, 10, 3)) & Trim(tela.getstring(conta, 14, 3)) & Trim(tela.getstring(conta, 18, 3)) & Trim(tela.getstring(conta, 22, 2))
+                                dados_insert(tt_contas, 36) = Trim(tela.getstring(conta, 30, 15))
+                                dados_insert(tt_contas, 37) = Trim(tela.getstring(conta, 60, 2))
+                                dados_insert(tt_contas, 33) = Trim(tela.getstring(conta + 1, 10, 69))
+                            Case "03"
+                                dados_insert(tt_contas, 39) = Trim(tela.getstring(conta, 10, 3)) & Trim(tela.getstring(conta, 14, 3)) & Trim(tela.getstring(conta, 18, 3)) & Trim(tela.getstring(conta, 22, 2))
+                                dados_insert(tt_contas, 41) = Trim(tela.getstring(conta, 30, 15))
+                                dados_insert(tt_contas, 42) = Trim(tela.getstring(conta, 60, 2))
+                                dados_insert(tt_contas, 38) = Trim(tela.getstring(conta + 1, 10, 69))
+                            Case "04"
+                                dados_insert(tt_contas, 44) = Trim(tela.getstring(conta, 10, 3)) & Trim(tela.getstring(conta, 14, 3)) & Trim(tela.getstring(conta, 18, 3)) & Trim(tela.getstring(conta, 22, 2))
+                                dados_insert(tt_contas, 46) = Trim(tela.getstring(conta, 30, 15))
+                                dados_insert(tt_contas, 47) = Trim(tela.getstring(conta, 60, 2))
+                                dados_insert(tt_contas, 43) = Trim(tela.getstring(conta + 1, 10, 69))
+                        End Select
+                    End If
+                Wscript.Sleep 10
+                Next
+                tela.SendKeys ("<Pf8>")
+                Wscript.Sleep 10
+                Loop
+                
+                tela.SendKeys ("<pf3>")
+                
+                i = 0
+                cont = 0
+                Do While i < 1
+                    Wscript.Sleep 10
+                    If Trim(tela.getstring(1, 2, 4)) = "IU44" Then
+                        i = 1
+                    End If
+                    cont = cont + 1
+                    If cont > 1000 Then
+                        msg_log = "Erro 3.7 - Conta: " & dados_insert(tt_contas, 2) & dados_insert(tt_contas, 3) & dados_insert(tt_contas, 4) & dados_insert(tt_contas, 5)
+                        PesquisaSiuni = False
+                        i = 1
+                        Exit Function
+                    End If
+                Loop
+            End If
+
+            tela.SendKeys ("<pf3>")
+            
+            i = 0
+            cont = 0
+            Do While i < 1
+                Wscript.Sleep 10
+                If Trim(tela.getstring(1, 2, 4)) = "IU42" Then
+                    i = 1
+                End If
+                cont = cont + 1
+                If cont > 1000 Then
+                    msg_log = "Erro 3.8 - Conta: " & dados_insert(tt_contas, 2) & dados_insert(tt_contas, 3) & dados_insert(tt_contas, 4) & dados_insert(tt_contas, 5)
+                    PesquisaSiuni = False
+                    i = 1
+                    Exit Function
+                End If
+            Loop
+            
+            tela.SendKeys ("<pf3>")
+            
+            i = 0
+            cont = 0
+            Do While i < 1
+                Wscript.Sleep 10
+                If Trim(tela.getstring(1, 2, 4)) = "IU75" Or Trim(tela.getstring(1, 2, 4)) = "IU22" Then
+                    i = 1
+                End If
+                cont = cont + 1
+                If cont > 1000 Then
+                    msg_log = "Erro 3.9 - Conta: " & dados_insert(tt_contas, 2) & dados_insert(tt_contas, 3) & dados_insert(tt_contas, 4) & dados_insert(tt_contas, 5)
+                    PesquisaSiuni = False
+                    i = 1
+                    Exit Function
+                End If
+            Loop
+            
+            tela.SendKeys ("<pf3>")
+            
+            i = 0
+            cont = 0
+            Do While i < 1
+                Wscript.Sleep 10
+                If Trim(tela.getstring(1, 2, 4)) = "IU18" Then
+                    i = 1
+                End If
+                cont = cont + 1
+                If cont > 1000 Then
+                    msg_log = "Erro 3.10 - Conta: " & dados_insert(tt_contas, 2) & dados_insert(tt_contas, 3) & dados_insert(tt_contas, 4) & dados_insert(tt_contas, 5)
+                    PesquisaSiuni = False
+                    i = 1
+                    Exit Function
+                End If
+            Loop
+        End If
+    Loop
+    
+    objFileRead.Close
+    
+    tt_contas3 = tt_contas3 + tt_contas
+    
+    tela.SendKeys ("<pf12>")
+    
+    Wscript.Sleep 1000
+            
+    PesquisaSiuni = True
+    
+End Function
